@@ -28,20 +28,22 @@ func _on_music_volume_value_changed(value: float) -> void:
 
 func _on_fullscreen_option_pressed() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN) #toggles fullscreen
-
-
+	DisplayServer.window_set_size(Vector2i(1920, 1080))
+	
 func _on_windowed_option_pressed() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED) #toggles windowed
-
 
 func _on_resolution_options_item_selected(index: int) -> void:
 	match index:
 		0:
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		1:
 			DisplayServer.window_set_size(Vector2i(1280, 720))
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		2:
 			DisplayServer.window_set_size(Vector2i(800, 600))
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		_:
 			return
 
