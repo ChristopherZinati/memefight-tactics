@@ -1,0 +1,305 @@
+[gd_scene load_steps=21 format=4 uid="uid://b56icvge8xdvf"]
+
+[ext_resource type="Script" path="res://scenes/battle_scene.gd" id="1_2vo8g"]
+[ext_resource type="TileSet" uid="uid://cm8g1jri1hugf" path="res://assets/battle-tiles.tres" id="1_s8kf2"]
+[ext_resource type="Texture2D" uid="uid://cwhsh1aqfa6fd" path="res://art/Dungoen Tileset PNG.png" id="2_l7ve6"]
+[ext_resource type="Script" path="res://scenes/pre_battle_time_bar.gd" id="2_mndwe"]
+[ext_resource type="PackedScene" uid="uid://nq8yu33c6xsv" path="res://scenes/unit.tscn" id="3_6y4oc"]
+[ext_resource type="Script" path="res://scripts/unit_grid.gd" id="4_au8nw"]
+[ext_resource type="Script" path="res://scripts/play_area.gd" id="4_hminq"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_uy1ye"]
+[ext_resource type="Texture2D" uid="uid://bcatk34ucsnwn" path="res://art/tilehighlight (2).png" id="5_w1yld"]
+[ext_resource type="Script" path="res://scripts/tile_highlighter.gd" id="7_3iud3"]
+[ext_resource type="Script" path="res://scripts/unit_dragger.gd" id="9_ok5pg"]
+[ext_resource type="PackedScene" uid="uid://bqltqyw2e57mo" path="res://scenes/enemy.tscn" id="11_lgqnq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmihq"]
+texture = ExtResource("2_l7ve6")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+2:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+10:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+10:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+0:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5i8i0"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_kmihq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3qcv"]
+texture = ExtResource("5_w1yld")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4cs32"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_n3qcv")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0qw6"]
+texture = ExtResource("5_w1yld")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yw3cx"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_q0qw6")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcbx8"]
+texture = ExtResource("5_w1yld")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8tflv"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_pcbx8")
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_2vo8g")
+metadata/_edit_lock_ = true
+
+[node name="Map" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="TileMapLayer" parent="Map"]
+tile_map_data = PackedByteArray("AAAEAAAAAQANAAcAAAAFAAAAAQANAAcAAAAIAAAAAQAOAAIAAAAJAAAAAQANAAcAAAAKAAAAAQANAAcAAAAEAAEAAQANAAcAAAAFAAEAAQANAAcAAAAGAAEAAQAMAAMAAAAHAAEAAQANAAMAAAAIAAEAAQAOAAMAAAAJAAEAAQANAAcAAAAKAAEAAQANAAcAAAAEAAMAAQANAAcAAAAEAAIAAQANAAcAAAAFAAIAAQANAAcAAAAGAAIAAQAMAAQAAAAGAAMAAQAMAAUAAAAFAAMAAQANAAcAAAAHAAMAAQANAAUAAAAIAAMAAQAOAAUAAAAIAAIAAQAOAAQAAAAHAAIAAQANAAQAAAAJAAMAAQANAAcAAAAJAAIAAQANAAcAAAAKAAMAAQANAAcAAAAKAAIAAQANAAcAAAAGAAAAAQAMAAIAAAAHAAAAAQANAAIAAAALAAAAAQAMAAIAAAAMAAAAAQANAAIAAAANAAAAAQAOAAIAAAAOAAAAAQANAAcAAAAPAAAAAQANAAcAAAALAAEAAQAMAAMAAAAMAAEAAQANAAMAAAANAAEAAQAOAAMAAAAOAAEAAQANAAcAAAAPAAEAAQANAAcAAAALAAIAAQAMAAQAAAAMAAIAAQANAAQAAAANAAIAAQAOAAQAAAAPAAIAAQANAAcAAAANAAMAAQAOAAUAAAAMAAMAAQANAAUAAAALAAMAAQAMAAUAAAAFAAQAAQANAAcAAAAFAAUAAQANAAcAAAAFAAYAAQANAAcAAAAEAAQAAQANAAcAAAAEAAUAAQANAAcAAAAEAAYAAQANAAcAAAAGAAQAAQANAAcAAAAGAAUAAQANAAcAAAAGAAYAAQANAAcAAAAHAAYAAQANAAcAAAAIAAYAAQANAAcAAAAJAAYAAQANAAcAAAAKAAYAAQANAAcAAAALAAYAAQANAAcAAAAMAAYAAQANAAcAAAANAAYAAQANAAcAAAANAAUAAQANAAcAAAANAAQAAQANAAcAAAAHAAQAAQANAAcAAAAHAAUAAQANAAcAAAAIAAUAAQANAAcAAAAIAAQAAQANAAcAAAAJAAUAAQANAAcAAAAJAAQAAQANAAcAAAAKAAUAAQANAAcAAAALAAUAAQANAAcAAAALAAQAAQANAAcAAAAKAAQAAQANAAcAAAAMAAUAAQANAAcAAAAMAAQAAQANAAcAAAAOAAIAAQANAAcAAAADAAEAAQAOAAMAAAADAAAAAQAOAAIAAAADAAIAAQAOAAQAAAACAAIAAQANAAQAAAACAAEAAQANAAMAAAACAAAAAQANAAIAAAABAAEAAQAMAAMAAAABAAIAAQAMAAQAAAABAAMAAQAMAAUAAAABAAQAAQANAAYAAAABAAUAAQANAAcAAAABAAcAAQACAAAAAAACAAgAAQACAAEAAAABAAgAAQACAAEAAAADAAMAAQAOAAUAAAADAAQAAQANAAcAAAADAAUAAQANAAcAAAADAAYAAQANAAcAAAADAAcAAQADAAAAAAAEAAcAAQANAAcAAAAFAAcAAQANAAcAAAAGAAcAAQANAAcAAAAHAAcAAQANAAcAAAAIAAcAAQANAAcAAAAJAAcAAQANAAcAAAAKAAcAAQANAAcAAAALAAcAAQANAAcAAAAMAAcAAQANAAcAAAANAAcAAQANAAcAAAAOAAcAAQANAAcAAAAOAAMAAQANAAcAAAAOAAQAAQANAAcAAAAOAAUAAQANAAcAAAAOAAYAAQANAAcAAAABAAAAAQAMAAIAAAAAAAAAAQANAAYAAAAAAAEAAQANAAYAAAAAAAIAAQANAAYAAAAAAAMAAQANAAYAAAAAAAQAAQANAAYAAAAAAAUAAQANAAcAAAAAAAYAAQANAAcAAAAAAAcAAQACAAAAAAAAAAgAAQACAAEAAAAAAAkAAQACAAEAAAAQAAAAAQAMAAIAAAAQAAEAAQAMAAMAAAAQAAIAAQAMAAQAAAAQAAMAAQAMAAUAAAAQAAQAAQANAAcAAAAQAAUAAQANAAcAAAAQAAYAAQANAAcAAAAQAAcAAQABAAAAAAAPAAkAAQAEAAAAAAAQAAgAAQAEAAAAAAAPAAgAAQABAAAAAAAPAAMAAQANAAcAAAACAAMAAQANAAUAAAACAAQAAQANAAcAAAAPAAQAAQANAAcAAAAPAAUAAQANAAcAAAABAAYAAQANAAcAAAACAAYAAQANAAcAAAAPAAYAAQANAAcAAAAPAAcAAQANAAcAAAACAAcAAQACAAAAAAADAAgAAQAFAAAAAAAEAAgAAQADAAAAAAAFAAgAAQANAAcAAAAGAAgAAQANAAcAAAAHAAgAAQANAAcAAAAIAAgAAQANAAcAAAAJAAgAAQANAAcAAAAKAAgAAQANAAcAAAALAAgAAQANAAcAAAAMAAgAAQANAAcAAAANAAgAAQANAAcAAAAOAAgAAQANAAcAAAAQAAkAAQACAAEAAAAOAAkAAQACAAAAAAANAAkAAQACAAAAAAAMAAkAAQACAAAAAAALAAkAAQACAAAAAAAKAAkAAQACAAAAAAAJAAkAAQACAAAAAAAIAAkAAQACAAAAAAAHAAkAAQACAAAAAAAGAAkAAQACAAAAAAAFAAkAAQACAAAAAAAEAAkAAQAFAAAAAAADAAkAAQACAAEAAAACAAkAAQACAAEAAAABAAkAAQACAAEAAAAAAAoAAQACAAEAAAABAAoAAQACAAEAAAACAAoAAQACAAEAAAADAAoAAQACAAEAAAAEAAoAAQACAAEAAAAFAAoAAQACAAEAAAAGAAoAAQACAAEAAAAHAAoAAQACAAEAAAAMAAoAAQACAAEAAAARAAkAAQACAAEAAAASAAkAAQACAAEAAAASAAoAAQACAAEAAAATAAoAAQACAAEAAAATAAkAAQACAAEAAAATAAgAAQACAAEAAAATAAcAAQACAAAAAAATAAYAAQANAAcAAAATAAUAAQANAAcAAAATAAQAAQANAAcAAAATAAMAAQANAAcAAAASAAMAAQAOAAUAAAASAAIAAQAOAAQAAAASAAEAAQAOAAMAAAATAAEAAQANAAcAAAATAAAAAQANAAcAAAATAAIAAQANAAcAAAASAAAAAQAOAAIAAAARAAAAAQANAAIAAAARAAEAAQANAAMAAAARAAIAAQANAAQAAAARAAMAAQANAAUAAAASAAQAAQANAAcAAAASAAUAAQANAAcAAAASAAYAAQANAAcAAAASAAcAAQACAAAAAAASAAgAAQACAAEAAAARAAgAAQACAAEAAAARAAcAAQACAAAAAAARAAYAAQANAAcAAAARAAUAAQANAAcAAAARAAQAAQANAAcAAAARAAoAAQACAAEAAAAQAAoAAQACAAEAAAAPAAoAAQACAAEAAAAOAAoAAQACAAEAAAANAAoAAQACAAEAAAACAAUAAQANAAcAAAAIAAoAAQACAAEAAAAJAAoAAQACAAEAAAAKAAoAAQACAAEAAAALAAoAAQACAAEAAAA=")
+tile_set = ExtResource("1_s8kf2")
+
+[node name="Floor" type="TileMapLayer" parent="Map"]
+tile_map_data = PackedByteArray("AAAEAAgAAAAGAAYAAAAFAAgAAAACAAMAAAAGAAgAAAACAAMAAAAHAAgAAAACAAMAAAAIAAgAAAACAAMAAAAJAAgAAAACAAMAAAAKAAgAAAACAAMAAAALAAgAAAACAAMAAAAMAAgAAAACAAMAAAANAAgAAAACAAMAAAAOAAgAAAACAAMAAAAPAAgAAAADAAQAAAAAAAQAAAAFAAIAAAABAAQAAAAFAAIAAAACAAQAAAAFAAIAAAAAAAUAAAAFAAMAAAABAAUAAAAFAAMAAAACAAUAAAAFAAMAAAAAAAYAAAANAAEAAAABAAYAAAANAAEAAAACAAYAAAANAAEAAAADAAYAAAAGAAQAAAAEAAcAAAAGAAQAAAADAAcAAAAGAAYAAAAFAAcAAAAFAAMAAAAGAAcAAAAFAAMAAAAHAAcAAAAFAAMAAAAIAAcAAAAFAAMAAAAJAAcAAAAFAAMAAAAKAAcAAAAFAAMAAAALAAcAAAAFAAMAAAAMAAcAAAAFAAMAAAANAAcAAAAFAAMAAAAOAAcAAAAFAAMAAAARAAUAAAAKAAMAAAASAAUAAAAKAAMAAAATAAUAAAAKAAMAAAARAAQAAAAKAAIAAAASAAQAAAAKAAIAAAATAAQAAAAKAAIAAAAPAAcAAAAJAAQAAAAQAAYAAAAJAAQAAAAQAAcAAAADAAQAAAARAAYAAAACAAMAAAASAAYAAAACAAMAAAATAAYAAAACAAMAAAAEAAUAAAAHAAMAAAAEAAYAAAAGAAMAAAAPAAYAAAAJAAMAAAAQAAUAAAAJAAMAAAAOAAYAAAAIAAMAAAAOAAUAAAAIAAMAAAAPAAUAAAAIAAMAAAAPAAQAAAAIAAMAAAAOAAQAAAACAAYAAAAOAAMAAAAIAAMAAAAPAAMAAAAIAAMAAAAQAAQAAAAJAAIAAAAQAAMAAAAJAAEAAAAPAAIAAAAJAAEAAAAOAAIAAAAKAAIAAAANAAIAAAAKAAIAAAAMAAIAAAAKAAIAAAALAAIAAAAKAAIAAAAKAAIAAAAKAAIAAAAJAAIAAAAKAAIAAAAIAAIAAAAKAAIAAAAHAAIAAAAKAAIAAAAGAAIAAAAKAAIAAAAFAAIAAAAKAAIAAAAEAAIAAAAGAAEAAAADAAMAAAAGAAEAAAAEAAMAAAAGAAIAAAAEAAQAAAAHAAIAAAAFAAQAAAAIAAMAAAAFAAMAAAACAAYAAAAFAAUAAAACAAYAAAAFAAYAAAAIAAMAAAAGAAYAAAAIAAMAAAAHAAYAAAAIAAMAAAAIAAYAAAACAAYAAAAJAAYAAAAHAAIAAAAKAAYAAAAHAAIAAAALAAYAAAACAAYAAAAMAAYAAAAIAAMAAAANAAYAAAAIAAMAAAANAAUAAAAIAAMAAAANAAQAAAAIAAMAAAANAAMAAAAIAAMAAAAMAAMAAAAIAAMAAAAMAAQAAAAIAAMAAAAMAAUAAAAIAAMAAAALAAQAAAAHAAIAAAALAAMAAAACAAcAAAAKAAMAAAAHAAIAAAAKAAQAAAACAAYAAAAKAAUAAAAHAAIAAAALAAUAAAAHAAIAAAAJAAQAAAACAAUAAAAJAAMAAAAHAAIAAAAIAAMAAAACAAYAAAAIAAQAAAAHAAIAAAAIAAUAAAACAAUAAAAJAAUAAAACAAcAAAAHAAMAAAAIAAMAAAAGAAMAAAAIAAMAAAAGAAQAAAAIAAMAAAAHAAUAAAAIAAMAAAAHAAQAAAAIAAMAAAAGAAUAAAAIAAMAAAADAAUAAAAGAAMAAAADAAQAAAAGAAIAAAA=")
+tile_set = SubResource("TileSet_5i8i0")
+
+[node name="GameArea" type="TileMapLayer" parent="." node_paths=PackedStringArray("unit_grid")]
+position = Vector2(160, 96)
+tile_set = ExtResource("1_s8kf2")
+script = ExtResource("4_hminq")
+unit_grid = NodePath("BattleUnitGrid")
+metadata/_edit_lock_ = true
+
+[node name="Highlight" type="TileMapLayer" parent="GameArea"]
+tile_set = SubResource("TileSet_4cs32")
+
+[node name="BattleUnitGrid" type="Node2D" parent="GameArea" node_paths=PackedStringArray("play_area")]
+script = ExtResource("4_au8nw")
+size = Vector2i(10, 4)
+pre_battle_size = Vector2i(4, 4)
+grid_type = "battle_grid"
+play_area = NodePath("..")
+
+[node name="TileHighlighter" type="Node" parent="GameArea" node_paths=PackedStringArray("play_area", "highlight_layer")]
+script = ExtResource("7_3iud3")
+play_area = NodePath("..")
+highlight_layer = NodePath("../Highlight")
+
+[node name="Bench" type="TileMapLayer" parent="." node_paths=PackedStringArray("unit_grid")]
+position = Vector2(160, 320)
+tile_map_data = PackedByteArray("AAAAAAAAAQALAAYAAAABAAAAAQALAAYAAAADAAAAAQALAAYAAAAEAAAAAQALAAYAAAAFAAAAAQALAAYAAAAGAAAAAQALAAYAAAAHAAAAAQALAAYAAAAIAAAAAQALAAYAAAAJAAAAAQALAAYAAAA=")
+tile_set = ExtResource("1_s8kf2")
+script = ExtResource("4_hminq")
+unit_grid = NodePath("BenchUnitGrid")
+metadata/_edit_lock_ = true
+
+[node name="Unit" parent="Bench" instance=ExtResource("3_6y4oc")]
+
+[node name="Unit2" parent="Bench" instance=ExtResource("3_6y4oc")]
+position = Vector2(32, 0)
+
+[node name="Highlight" type="TileMapLayer" parent="Bench"]
+tile_set = SubResource("TileSet_yw3cx")
+
+[node name="BenchUnitGrid" type="Node2D" parent="Bench" node_paths=PackedStringArray("play_area")]
+position = Vector2(-160, -64)
+script = ExtResource("4_au8nw")
+size = Vector2i(10, 1)
+grid_type = "bench_grid"
+play_area = NodePath("..")
+
+[node name="TileHighlighter" type="Node" parent="Bench" node_paths=PackedStringArray("play_area", "highlight_layer")]
+script = ExtResource("7_3iud3")
+play_area = NodePath("..")
+highlight_layer = NodePath("../Highlight")
+tile = Vector2i(3, 0)
+
+[node name="ItemBench" type="TileMapLayer" parent="." node_paths=PackedStringArray("unit_grid")]
+position = Vector2(0, 256)
+tile_map_data = PackedByteArray("AAACAAEAAQALAAYAAAACAAIAAQALAAYAAAABAAIAAQALAAYAAAAAAAIAAQALAAYAAAAAAAEAAQALAAYAAAABAAEAAQALAAYAAAA=")
+tile_set = ExtResource("1_s8kf2")
+script = ExtResource("4_hminq")
+unit_grid = NodePath("ItemGrid")
+metadata/_edit_lock_ = true
+
+[node name="Highlight" type="TileMapLayer" parent="ItemBench"]
+tile_set = SubResource("TileSet_8tflv")
+
+[node name="ItemGrid" type="Node2D" parent="ItemBench" node_paths=PackedStringArray("play_area")]
+script = ExtResource("4_au8nw")
+size = Vector2i(3, 3)
+grid_type = "item_grid"
+play_area = NodePath("..")
+
+[node name="TileHighlighter" type="Node" parent="ItemBench" node_paths=PackedStringArray("play_area", "highlight_layer")]
+script = ExtResource("7_3iud3")
+play_area = NodePath("..")
+highlight_layer = NodePath("../Highlight")
+tile = Vector2i(3, 0)
+
+[node name="PreBattleTimeBar" type="Line2D" parent="."]
+position = Vector2(265, 10)
+points = PackedVector2Array(0, 0, 100, 0)
+width = 8.0
+default_color = Color(0.796078, 0.733333, 0, 1)
+script = ExtResource("2_mndwe")
+
+[node name="Timer" type="Timer" parent="PreBattleTimeBar"]
+autostart = true
+
+[node name="UnitDragger" type="Node" parent="." node_paths=PackedStringArray("play_areas")]
+script = ExtResource("9_ok5pg")
+play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
+
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("battle", "game_area", "battle_grid")]
+script = ExtResource("4_uy1ye")
+battle = NodePath("..")
+game_area = NodePath("../GameArea")
+battle_grid = NodePath("../GameArea/BattleUnitGrid")
+enemy_scenes = Array[PackedScene]([ExtResource("11_lgqnq"), ExtResource("11_lgqnq")])
+
+[connection signal="PreBattleOver" from="PreBattleTimeBar" to="." method="_on_pre_battle_over"]
+[connection signal="timeout" from="PreBattleTimeBar/Timer" to="PreBattleTimeBar" method="_on_timer_timeout"]
