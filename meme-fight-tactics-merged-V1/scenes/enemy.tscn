@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqltqyw2e57mo"]
+[gd_scene load_steps=9 format=3 uid="uid://bqltqyw2e57mo"]
 
 [ext_resource type="Texture2D" uid="uid://cxqtd4ftaopbq" path="res://art/icon_color.png" id="1_4yet7"]
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_buabf"]
+[ext_resource type="Script" path="res://data/enemies/testenemy/enemy.gd" id="1_buabf"]
 [ext_resource type="Resource" uid="uid://dtjqk53glyyid" path="res://data/enemies/testenemy/testenemy_stats.tres" id="2_wxif3"]
-[ext_resource type="Script" path="res://scripts/pathfinder.gd" id="4_ldvn7"]
+[ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_6eu6e"]
+[ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="4_ldvn7"]
+[ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_1wyjp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbxkf"]
 size = Vector2(28, 29)
 
-[node name="Enemy1" type="Area2D" groups=["enemies"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ib0w"]
+radius = 22.6274
+
+[node name="Enemy1" type="CharacterBody2D" groups=["enemies"]]
 light_mask = 3
 visibility_layer = 2
 script = ExtResource("1_buabf")
@@ -25,11 +30,21 @@ visibility_layer = 2
 position = Vector2(15, 14.5)
 shape = SubResource("RectangleShape2D_rbxkf")
 
-[node name="Pathfinder" type="Node2D" parent="."]
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="RangeShape" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(16, 16)
+shape = SubResource("CircleShape2D_1ib0w")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "attack_range")]
+script = ExtResource("4_6eu6e")
+initial_state = NodePath("Pathfinding")
+attack_range = NodePath("../AttackRange")
+
+[node name="Pathfinding" type="Node" parent="StateMachine"]
 script = ExtResource("4_ldvn7")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_1wyjp")
 
-[connection signal="timeout" from="Timer" to="Pathfinder" method="_on_timer_timeout"]
+[connection signal="area_entered" from="AttackRange" to="StateMachine/Pathfinding" method="_on_attack_range_entered"]

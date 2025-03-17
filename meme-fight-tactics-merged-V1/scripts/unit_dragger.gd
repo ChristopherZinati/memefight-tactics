@@ -5,12 +5,13 @@ extends Node
 
 
 func _ready() -> void:
-	var units := get_tree().get_nodes_in_group("units")
-	for unit: Unit in units:
+	var units = get_tree().get_nodes_in_group("units")
+	for unit: DraggableUnit in units:
+		
 		setup_unit(unit)
 
 
-func setup_unit(unit: Unit) -> void:
+func setup_unit(unit: DraggableUnit) -> void:
 	unit.drag_and_drop.drag_started.connect(_on_unit_drag_started.bind(unit))
 	unit.drag_and_drop.drag_canceled.connect(_on_unit_drag_canceled.bind(unit))
 	unit.drag_and_drop.dropped.connect(_on_unit_dropped.bind(unit))
@@ -32,7 +33,7 @@ func _get_play_area_for_position(global: Vector2) -> int:
 	return dropped_area_index
 
 
-func _reset_unit_to_starting_position(starting_position: Vector2, unit: Unit) -> void:
+func _reset_unit_to_starting_position(starting_position: Vector2, unit: DraggableUnit) -> void:
 	var i := _get_play_area_for_position(starting_position)
 	var tile := play_areas[i].get_tile_from_global(starting_position)
 	
@@ -41,25 +42,25 @@ func _reset_unit_to_starting_position(starting_position: Vector2, unit: Unit) ->
 	play_areas[i].unit_grid.add_entity(tile, unit)
 
 
-func _move_unit(unit: Unit, play_area: PlayArea, tile: Vector2i) -> void:
+func _move_unit(unit: DraggableUnit, play_area: PlayArea, tile: Vector2i) -> void:
 	#play_area.unit_grid.add_unit(tile, unit)
 	play_area.unit_grid.add_entity(tile, unit)
 	unit.global_position = play_area.get_global_from_tile(tile) - Battle.HALF_CELL_SIZE
 	unit.reparent(play_area.unit_grid)
 
 
-func _on_unit_drag_started(unit: Unit) -> void:
+func _on_unit_drag_started(unit: DraggableUnit) -> void:
 	var i := _get_play_area_for_position(unit.global_position)
 	if i > -1:
 		var tile := play_areas[i].get_tile_from_global(unit.global_position)
 		play_areas[i].unit_grid.remove_unit(tile)
 
 
-func _on_unit_drag_canceled(starting_position: Vector2, unit: Unit) -> void:
+func _on_unit_drag_canceled(starting_position: Vector2, unit: DraggableUnit) -> void:
 	_reset_unit_to_starting_position(starting_position, unit)
 
 
-func _on_unit_dropped(starting_position: Vector2, unit: Unit) -> void:
+func _on_unit_dropped(starting_position: Vector2, unit: DraggableUnit) -> void:
 
 	var old_area_index := _get_play_area_for_position(starting_position)
 	var drop_area_index := _get_play_area_for_position(unit.get_global_mouse_position())
@@ -75,7 +76,7 @@ func _on_unit_dropped(starting_position: Vector2, unit: Unit) -> void:
 	
 	# swap units
 	if new_area.unit_grid.is_tile_occupied(new_tile):
-		var old_unit: Unit = new_area.unit_grid.units[new_tile]
+		var old_unit: DraggableUnit = new_area.unit_grid.units[new_tile]
 		new_area.unit_grid.remove_unit(new_tile)
 		_move_unit(old_unit, old_area, old_tile)
 	

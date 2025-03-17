@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://nq8yu33c6xsv"]
+
+[ext_resource type="Script" path="res://data/units/testunit/draggable_unit.gd" id="1_0y0ar"]
+[ext_resource type="Texture2D" uid="uid://b2p0u0asjqb5x" path="res://art/TestSprite.png" id="3_5tycd"]
+[ext_resource type="Script" path="res://scripts/drag_and_drop.gd" id="4_mh5br"]
+[ext_resource type="Script" path="res://scripts/rag_doll_drag.gd" id="5_rdsti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asdop"]
+size = Vector2(15, 29.9217)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gw788"]
+bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nwre"]
+bg_color = Color(0.207516, 0.583692, 0.227094, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cei4e"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kpv0"]
+bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
+
+[node name="Unit" type="Area2D" groups=["units"]]
+light_mask = 3
+script = ExtResource("1_0y0ar")
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+position = Vector2(14, 11)
+texture = ExtResource("3_5tycd")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+position = Vector2(13.5, 12.045)
+scale = Vector2(1, 1.00562)
+shape = SubResource("RectangleShape2D_asdop")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = 16.0
+scale = Vector2(6.32, 0.0800015)
+theme_override_styles/background = SubResource("StyleBoxFlat_gw788")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4nwre")
+value = 83.01
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="EnergyBar" type="ProgressBar" parent="."]
+offset_left = 2.0
+offset_top = -9.0
+offset_right = 6.0
+offset_bottom = 18.0
+scale = Vector2(6.32, 0.0799999)
+theme_override_styles/background = SubResource("StyleBoxFlat_cei4e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8kpv0")
+value = 80.0
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="RagDollDrag" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_rdsti")
+target = NodePath("../TestSprite")
+
+[node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_mh5br")
+target = NodePath("..")

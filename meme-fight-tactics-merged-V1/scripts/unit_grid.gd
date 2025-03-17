@@ -30,8 +30,8 @@ func _ready() -> void:
 		
 
 
-func add_unit(tile: Vector2i, unit: Node) -> void:
-	pass
+#func add_unit(tile: Vector2i, unit: Node) -> void:
+	#pass
 	#if not is_battle_started and !is_within_pre_battle_area(tile):
 		#return
 
@@ -40,8 +40,8 @@ func add_unit(tile: Vector2i, unit: Node) -> void:
 	#unit_grid_changed.emit()
 
 
-func add_enemy(tile: Vector2i, enemy: Node) -> void:
-	pass
+#func add_enemy(tile: Vector2i, enemy: Node) -> void:
+	#pass
 	#units[tile] = enemy
 	#enemy.tree_exited.connect(_on_unit_tree_exited.bind(enemy, tile))
 	#unit_grid_changed.emit()
@@ -107,13 +107,13 @@ func get_first_empty_enemy_tile() -> Vector2i:
 	return Vector2i(-1,-1)
 
 
-func get_all_units() -> Array:
-	var unit_array: Array = []
-	for entity in units.values():
-		if entity is Unit or entity is Enemy:
-			unit_array.append(entity)
+#func get_all_units() -> Array:
+	#var unit_array: Array = []
+	#for entity in units.values():
+		#if entity is Unit or entity is Enemy:
+			#unit_array.append(entity)
 
-	return unit_array
+	#return unit_array
 
 
 # clears <freed unit> in unit dictionary when moving units

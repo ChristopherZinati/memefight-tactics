@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		angle = 0.0
 	
-	# https://www.youtube.com/watch?v=GAKcB8RwTmQ
+	# FML WTF IS THIS https://www.youtube.com/watch?v=GAKcB8RwTmQ
 	target.rotation = lerp_angle(target.rotation, angle, progress)
 	time_elapsed += delta
 	

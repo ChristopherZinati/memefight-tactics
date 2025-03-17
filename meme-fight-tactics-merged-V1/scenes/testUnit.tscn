@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpvuq78h265ti"]
+
+[ext_resource type="Script" path="res://data/units/testunit/unit.gd" id="1_g8ux4"]
+[ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="2_oj7lc"]
+[ext_resource type="Resource" uid="uid://cecdx1k70p32n" path="res://data/units/testunit/testunit.tres" id="2_ydu5r"]
+[ext_resource type="Texture2D" uid="uid://b2p0u0asjqb5x" path="res://art/TestSprite.png" id="3_7hsug"]
+[ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_d7isi"]
+[ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_1lrfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feg5o"]
+size = Vector2(16, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll1yi"]
+radius = 22.6274
+
+[node name="Unit" type="CharacterBody2D" groups=["units"]]
+light_mask = 3
+script = ExtResource("1_g8ux4")
+stats = ExtResource("2_ydu5r")
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+position = Vector2(14, 11)
+texture = ExtResource("3_7hsug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13.5, 12.045)
+scale = Vector2(1, 1.05432)
+shape = SubResource("RectangleShape2D_feg5o")
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="RangeShape" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(16, 16)
+shape = SubResource("CircleShape2D_ll1yi")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "attack_range")]
+script = ExtResource("4_d7isi")
+initial_state = NodePath("Pathfinding")
+attack_range = NodePath("../AttackRange")
+
+[node name="Pathfinding" type="Node" parent="StateMachine"]
+script = ExtResource("2_oj7lc")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_1lrfj")
+
+[connection signal="area_entered" from="AttackRange" to="StateMachine/Pathfinding" method="_on_attack_range_entered"]

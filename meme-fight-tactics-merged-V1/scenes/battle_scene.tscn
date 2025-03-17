@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=4 uid="uid://b56icvge8xdvf"]
 
-[ext_resource type="Script" path="res://scenes/battle_scene.gd" id="1_2vo8g"]
+[ext_resource type="Script" path="res://scripts/battle_scene.gd" id="1_2vo8g"]
 [ext_resource type="TileSet" uid="uid://cm8g1jri1hugf" path="res://assets/battle-tiles.tres" id="1_s8kf2"]
 [ext_resource type="Texture2D" uid="uid://cwhsh1aqfa6fd" path="res://art/Dungoen Tileset PNG.png" id="2_l7ve6"]
-[ext_resource type="Script" path="res://scenes/pre_battle_time_bar.gd" id="2_mndwe"]
-[ext_resource type="PackedScene" uid="uid://nq8yu33c6xsv" path="res://scenes/unit.tscn" id="3_6y4oc"]
+[ext_resource type="Script" path="res://scripts/pre_battle_time_bar.gd" id="2_mndwe"]
+[ext_resource type="PackedScene" uid="uid://nq8yu33c6xsv" path="res://scenes/drag_testUnit.tscn" id="3_6y4oc"]
 [ext_resource type="Script" path="res://scripts/unit_grid.gd" id="4_au8nw"]
 [ext_resource type="Script" path="res://scripts/play_area.gd" id="4_hminq"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_uy1ye"]
@@ -191,8 +191,10 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_pcbx8")
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("unit_grid", "play_area")]
 script = ExtResource("1_2vo8g")
+unit_grid = NodePath("GameArea/BattleUnitGrid")
+play_area = NodePath("GameArea")
 metadata/_edit_lock_ = true
 
 [node name="Map" type="Node2D" parent="."]

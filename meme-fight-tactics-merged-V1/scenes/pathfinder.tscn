@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cij040hpo5nlt"]
+
+[ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="1_gav4t"]
+
+[node name="Pathfinder" type="Node2D"]
+visible = false
+script = ExtResource("1_gav4t")
