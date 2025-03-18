@@ -59,14 +59,21 @@ func create_map() -> void:
 	
 func unlock_column(which_column: int = columns_traversed) -> void:
 	for map_encounter: MapEncounter in encounters.get_children():
-		if map_encounter.encounter.row == which_column:
+		if map_encounter.encounter.column == which_column:
 			map_encounter.available = true 
 			
 
 func unlock_next_encounters() -> void:
-	for map_encounter in encounters.get_children() as Array[Encounter]:
+	for map_encounter in encounters.get_children() as Array[MapEncounter]:
 		if last_encounter.next_encounters.has(map_encounter.encounter):
 			map_encounter.available = true
+
+			if map_encounter.encounter.next_encounters.size() > 1:
+				for next_encounter in map_encounter.encounter.next_encounters:
+					# Unlock any additional paths at the branching point
+					for extra_map_encounter in encounters.get_children():
+						if extra_map_encounter.encounter == next_encounter:
+							extra_map_encounter.available = true
 
 
 func show_map() -> void:
@@ -102,9 +109,45 @@ func _connect_lines(encounter: Encounter) -> void:
 
 func _on_map_encounter_selected(encounter: Encounter) -> void:
 	for map_encounter in encounters.get_children() as Array[Encounter]:
-		if map_encounter.encounter.row == encounter.row:
+		if map_encounter.encounter.column == encounter.column and map_encounter != encounter:
 			map_encounter.available = false
 			
 	last_encounter = encounter
 	columns_traversed += 1
+	_save_map_state()
+	unlock_next_encounters()
+
+
+func _save_map_state():
+	var save_data = {
+		"map_data" : []
+	}
+	for row in map_data:
+		var row_data = []
+		for encounter in row:
+			var encounter_data = {
+				"row": encounter.row,
+				"column": encounter.column,
+				"postition": [encounter.position.x, encounter.position.y],
+				"type": int(encounter.type),
+				"selected": encounter.selected,
+				"next_encounters": []
+			}
+			for next_enc in encounter.next_encounters:
+				encounter_data["next_encounters"].append({
+					"row": next_enc.row,
+					"column": next_enc.column
+				})
+			row_data.append(encounter_data)
+		save_data["map_data"].append(row_data)
 	
+	var map_state_path = "res://data/Player/saved_map_state.json"
+	var file = FileAccess.open(map_state_path, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(save_data))
+		file.close()
+		print(save_data)
+		print("file saved")
+	else:
+		print("ERROR: file not found")
+		

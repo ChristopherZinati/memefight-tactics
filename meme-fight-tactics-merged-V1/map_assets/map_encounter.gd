@@ -11,6 +11,14 @@ const icons := {
 	Encounter.Type.BOSS_BATTLE:[preload("res://map_assets/map_icons/Boss v1.png"), Vector2(1.25, 1.25)],
 }
 
+var scene_paths := {
+	Encounter.Type.NOT_ASSIGNED : "",
+	Encounter.Type.BATTLE: "battle.path",
+	Encounter.Type.AB_SHOP: "res://menus/shop_phase.tscn",
+	Encounter.Type.U_SHOP: "res://menus/unit_shop_phase.tscn",
+	Encounter.Type.SPECIAL_EVENT: "res://menus/unit_shop_phase.tscn",
+	Encounter.Type.BOSS_BATTLE: "boss_battle.path"
+}
 
 	
 @onready var sprite_2d: Sprite2D = $Visuals/Sprite2D
@@ -54,6 +62,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			encounter.selected = true
 			animation_player.play("select")
 
-#called by animation player when select animation finishes
-func _on_map_encounter_selected(encounter: Encounter) -> void:
+
+func _on_map_encounter_selected() -> void:
 	selected.emit(encounter)
+	
+	if encounter.type in scene_paths:
+		get_tree().change_scene_to_file(scene_paths[encounter.type])

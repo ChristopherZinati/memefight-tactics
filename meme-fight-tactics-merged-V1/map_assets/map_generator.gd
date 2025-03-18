@@ -25,6 +25,7 @@ var random_encounter_type_total_weight := 0
 var map_data: Array[Array]
 
 func _generate_map() -> Array[Array]:
+	_clear_saved_map_state()
 	# Assign the grid to the member variable.
 	map_data = _generate_initial_grid()
 	var starting_points = _get_random_starting_points()
@@ -227,3 +228,17 @@ func _get_random_encounter_by_weight() -> Encounter.Type:
 			
 	return Encounter.Type.BOSS_BATTLE
 	
+
+func _clear_saved_map_state() -> void:
+	var save_data = {
+		"map_data" : []
+	}
+	var saved_map_state = "res://data/Player/saved_map_state.json"
+	var file = FileAccess.open(saved_map_state, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(save_data))
+		file.close()
+		print(save_data)
+		print("file overwritten")
+	else:
+		print("ERROR: file not found")
