@@ -484,7 +484,7 @@ offset_bottom = 23.0
 theme_override_font_sizes/normal_font_size = 8
 text = "test text lmao"
 
-[node name="Button" type="Button" parent="ShopPanel/RightsideVBox/RerollPanel"]
+[node name="ExitButton" type="Button" parent="ShopPanel/RightsideVBox/RerollPanel"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 141.0
@@ -512,3 +512,4 @@ theme_override_font_sizes/bold_italics_font_size = 16
 text = "200"
 
 [connection signal="pressed" from="ShopPanel/RightsideVBox/RerollPanel/RerollButton" to="." method="_on_reroll_button_pressed"]
+[connection signal="pressed" from="ShopPanel/RightsideVBox/RerollPanel/ExitButton" to="." method="_on_exit_button_pressed"]
