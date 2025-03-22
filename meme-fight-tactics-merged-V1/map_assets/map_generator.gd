@@ -233,7 +233,7 @@ func _clear_saved_map_state() -> void:
 	var save_data = {
 		"map_data" : []
 	}
-	var saved_map_state = "res://data/Player/saved_map_state.json"
+	var saved_map_state = "user://saved_map_state.json"
 	var file = FileAccess.open(saved_map_state, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(save_data))

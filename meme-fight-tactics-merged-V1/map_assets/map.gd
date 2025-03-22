@@ -18,9 +18,17 @@ var camera_edge_x: float
 var camera_edge_y: float
 
 func _ready() -> void:
+	var absolute_path = OS.get_user_data_dir() + "/saved_map_state.json"
+	print("Saved state path: ", absolute_path)
 	camera_edge_x = map_generator.x_dist * (map_generator.map_width)
 	camera_edge_y = map_generator.y_dist * (map_generator.floors)
-	generate_new_map()
+	if _load_map_state():
+		free_children(encounters)
+		free_children(lines)
+		create_map()
+	else:
+		print("failed to load saved map state, generating new")
+		generate_new_map()
 	
 func _input(event: InputEvent) -> void:
 	var MOVE_SPEED := 10
@@ -46,8 +54,7 @@ func generate_new_map() -> void:
 func create_map() -> void:
 	for current_floor: Array in map_data:
 		for encounter: Encounter in current_floor:
-			if encounter.next_encounters.size() > 0:
-				_spawn_encounter(encounter)
+			_spawn_encounter(encounter)
 		
 	var middle := floori(MapGenerator.floors * 0.5)
 	_spawn_encounter(map_data[middle][MapGenerator.map_width-1])
@@ -56,6 +63,7 @@ func create_map() -> void:
 	visuals.position.x = (get_viewport_rect().size.x - map_width_pixels) / 2
 	visuals.position.y = get_viewport_rect().size.y / 2
 	
+	lock_past_encounters()
 	
 func unlock_column(which_column: int = columns_traversed) -> void:
 	for map_encounter: MapEncounter in encounters.get_children():
@@ -65,16 +73,16 @@ func unlock_column(which_column: int = columns_traversed) -> void:
 
 func unlock_next_encounters() -> void:
 	for map_encounter in encounters.get_children() as Array[MapEncounter]:
-		if last_encounter.next_encounters.has(map_encounter.encounter):
+		# Unlock encounters only in the next column relative to the last selected encounter.
+		if map_encounter.encounter.column == last_encounter.column + 1:
 			map_encounter.available = true
 
-			if map_encounter.encounter.next_encounters.size() > 1:
-				for next_encounter in map_encounter.encounter.next_encounters:
-					# Unlock any additional paths at the branching point
-					for extra_map_encounter in encounters.get_children():
-						if extra_map_encounter.encounter == next_encounter:
-							extra_map_encounter.available = true
 
+func lock_past_encounters() -> void:
+	for map_encounter in encounters.get_children() as Array[MapEncounter]:
+		if map_encounter.encounter.column < columns_traversed:
+			map_encounter.available = false
+			# Optionally, update its visuals to reflect that it's locked
 
 func show_map() -> void:
 	show()
@@ -92,8 +100,9 @@ func _spawn_encounter(encounter: Encounter) -> void:
 	new_map_encounter.selected.connect(_on_map_encounter_selected)
 	_connect_lines(encounter)
 	
-	if encounter.selected and encounter.column < columns_traversed:
+	if encounter.selected: # and encounter.column < columns_traversed:
 		new_map_encounter.show_selected()
+		new_map_encounter.available = false 
 
 
 func _connect_lines(encounter: Encounter) -> void:
@@ -108,19 +117,23 @@ func _connect_lines(encounter: Encounter) -> void:
 
 
 func _on_map_encounter_selected(encounter: Encounter) -> void:
-	for map_encounter in encounters.get_children() as Array[Encounter]:
-		if map_encounter.encounter.column == encounter.column and map_encounter != encounter:
+	# Lock all encounters in columns <= selected encounter's column (except the one just selected)
+	for map_encounter in encounters.get_children() as Array[MapEncounter]:
+		if map_encounter.encounter.column <= encounter.column and map_encounter != encounter:
 			map_encounter.available = false
 			
 	last_encounter = encounter
-	columns_traversed += 1
-	_save_map_state()
+	# Update progress: if the player has selected an encounter, then the next column is the one to unlock.
+	columns_traversed = max(columns_traversed, encounter.column + 1)
+	
 	unlock_next_encounters()
+	_save_map_state()
 
 
-func _save_map_state():
+func _save_map_state() -> void:
 	var save_data = {
-		"map_data" : []
+		"columns_traversed": columns_traversed,
+		"map_data": []
 	}
 	for row in map_data:
 		var row_data = []
@@ -128,7 +141,7 @@ func _save_map_state():
 			var encounter_data = {
 				"row": encounter.row,
 				"column": encounter.column,
-				"postition": [encounter.position.x, encounter.position.y],
+				"position": [encounter.position.x, encounter.position.y],
 				"type": int(encounter.type),
 				"selected": encounter.selected,
 				"next_encounters": []
@@ -141,7 +154,7 @@ func _save_map_state():
 			row_data.append(encounter_data)
 		save_data["map_data"].append(row_data)
 	
-	var map_state_path = "res://data/Player/saved_map_state.json"
+	var map_state_path = "user://saved_map_state.json"
 	var file = FileAccess.open(map_state_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(save_data))
@@ -150,4 +163,70 @@ func _save_map_state():
 		print("file saved")
 	else:
 		print("ERROR: file not found")
-		
+
+
+func _load_map_state() -> bool:
+	var map_state_path = "user://saved_map_state.json"
+	if not FileAccess.file_exists(map_state_path):
+		print("No saved map state found!")
+		return false
+	
+	var file = FileAccess.open(map_state_path, FileAccess.READ)
+	var data_text = file.get_as_text()
+	file.close()
+	
+	var parse_result = JSON.parse_string(data_text)
+	var error_code = parse_result.get("error", 0)
+	if error_code != 0:
+		print("Error parsing saved map state! Error code: ", error_code)
+		return false
+	
+	var loaded_data: Dictionary
+	if parse_result.has("result"):
+		loaded_data = parse_result["result"]
+	else:
+		loaded_data = parse_result
+	
+	# Check if the saved map_data is empty
+	if not loaded_data.has("map_data") or loaded_data["map_data"].is_empty():
+		print("Saved map state is empty!")
+		return false
+	
+	# Restore progress (columns_traversed)
+	if loaded_data.has("columns_traversed"):
+		columns_traversed = loaded_data["columns_traversed"]
+	else:
+		columns_traversed = 0
+	
+	# Rebuild map_data from loaded data
+	map_data.clear()
+	for row_data in loaded_data["map_data"]:
+		var row = []
+		for encounter_data in row_data:
+			var encounter = Encounter.new()
+			encounter.row = encounter_data["row"]
+			encounter.column = encounter_data["column"]
+			encounter.position = Vector2(encounter_data.get("position", [0,0])[0], encounter_data.get("position", [0,0])[1])
+			encounter.type = encounter_data["type"]
+			encounter.selected = encounter_data["selected"]
+			# Initialize next_encounters as an empty array; we'll restore them next.
+			encounter.next_encounters = [] as Array[Encounter]
+			row.append(encounter)
+		map_data.append(row)
+	
+	# Second pass: restore next_encounters based on saved row and column indices
+	for i in range(map_data.size()):
+		for j in range(map_data[i].size()):
+			var encounter = map_data[i][j]
+			var saved_next = loaded_data["map_data"][i][j]["next_encounters"]
+			for next_enc_data in saved_next:
+				var next_encounter = map_data[next_enc_data["row"]][next_enc_data["column"]]
+				encounter.next_encounters.append(next_encounter)
+	
+	print("Map state loaded!")
+	return true
+
+
+func free_children(node: Node) -> void:
+	for child in node.get_children():
+		child.queue_free()

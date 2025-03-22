@@ -1,60 +1,55 @@
 extends Control
 
-# For testing purposes, abilities, buffs, and player data will be loaded from a separate location
-var abilities = {
+var units = {
 	"Smart Contract Deploy": {
 		"texture": preload("res://test_textures/CommonInv_Template.png"),
 		"description": "boost attack efficacy by 20%",
 		"price": 150,
-		"type":"abilities"
+		"type":"units"
 	},
 	"Mining Boost": {
 		"texture": preload("res://test_textures/RareInv_Template.png"),
 		"description": "meow",
 		"price": 120,
-		"type":"abilities"
+		"type":"units"
 	},
 	"Airdrop Sniper": {
 		"texture": preload("res://test_textures/UncommonInv_Template.png"),
 		"description": "test lol",
 		"price": 180,
-		"type":"abilities"
+		"type":"units"
 	},
 	"Flash Loan Attack": {
 		"texture": preload("res://test_textures/UncommonInv_Template.png"),
 		"description": "get a special interest rate on something idk",
 		"price": 250,
-		"type":"abilities"
-	}
-}
-
-var buffs = {
-	"HODL Power": {
-		"texture": preload("res://test_textures/UncommonInv_Template.png"),
-		"description": "Increase resilience against market dips.",
-		"price": 90,
-		"type":"buffs"
+		"type":"units"
 	},
-	"Decentralized Shield": {
-		"texture": preload("res://test_textures/UncommonInv_Template.png"),
-		"description": "Defend against centralized attacks and hacks.",
-		"price": 130,
-		"type":"buffs"
+	"test1": {
+		"texture": preload("res://test_textures/CommonInv_Template.png"),
+		"description": "boost attack efficacy by 20%",
+		"price": 150,
+		"type":"units"
 	},
-	"Whale Detection": {
-		"texture": preload("res://test_textures/UncommonInv_Template.png"),
-		"description": "Detect whale movements before price surges.",
-		"price": 200,
-		"type":"buffs"
-	},
-	"Cold Wallet Security": {
+	"test2": {
 		"texture": preload("res://test_textures/RareInv_Template.png"),
-		"description": "Boost protection from hacks and rug pulls.",
-		"price": 160,
-		"type":"buffs"
+		"description": "meow",
+		"price": 120,
+		"type":"units"
+	},
+	"test3": {
+		"texture": preload("res://test_textures/UncommonInv_Template.png"),
+		"description": "test lol",
+		"price": 180,
+		"type":"units"
+	},
+	"test4": {
+		"texture": preload("res://test_textures/UncommonInv_Template.png"),
+		"description": "get a special interest rate on something idk",
+		"price": 250,
+		"type":"units"
 	}
 }
-
 var player_currency:= 500
 var player_inventory = {
 	"abilities":[],
@@ -63,46 +58,41 @@ var player_inventory = {
 }
 # ^ for testing purposes ^
 
+@onready var top_cont: HBoxContainer= %UnitHboxTop
+@onready var bottom_cont: HBoxContainer = %UnitHboxBottom
 
-@onready var abilities_cont : HBoxContainer = %AbilitiesHBox
-@onready var buffs_cont : Node = %BuffsHBox
-
-@onready var shopkeeper_text = $ShopPanel/RightsideVBox/RerollPanel/Panel/ShopKeeperTextBox
-@onready var player_curr_text = $ShopPanel/RightsideVBox/RerollPanel/CurrentPlayerCurrency
+@onready var shopkeeper_text = $RightsideVBox/RerollPanel/Panel/ShopKeeperTextBox
+@onready var player_curr_text = $RightsideVBox/RerollPanel/CurrentPlayerCurrency
 func _ready():
 	randomize()
 	populate_shop()
 	shopkeeper_text.text = "welcome to the shop"
 	player_curr_text.text = str(player_currency)
 	
+	
 func populate_shop():
-	var ability_keys = abilities.keys()
-	ability_keys.shuffle()
-	var selected_abilities = ability_keys.slice(0, 4)
-	
-	var buff_keys = buffs.keys()
-	buff_keys.shuffle()
-	var selected_buffs = buff_keys.slice(0, 4)
+	var unit_keys = units.keys()
+	unit_keys.shuffle()
+	var selected_units = unit_keys.slice(0, 8)
 	
 	for i in range(4):
-		var panel = abilities_cont.get_child(i)
-		var item_name = selected_abilities[i]
-		var item_data = abilities[item_name]
+		var panel = top_cont.get_child(i)
+		var item_name = selected_units[i]
+		var item_data = units[item_name]
 		update_panel(panel, item_name, item_data)
 	
 	for i in range(4):
-		var panel = buffs_cont.get_child(i)
-		var item_name = selected_buffs[i]
-		var item_data = buffs[item_name]
+		var panel = bottom_cont.get_child(i)
+		var item_name = selected_units[i]
+		var item_data = units[item_name]
 		update_panel(panel, item_name, item_data)
-		
 	
 func update_panel(panel: Panel, item_name: String, item_data: Dictionary):
-	var image_rect = panel.get_node("AbilityImage") as Sprite2D
+	var image_rect = panel.get_node("UnitSprite") as Sprite2D
 	image_rect.texture = item_data.texture
 	image_rect.set_deferred("scale", Vector2(1.5,1.5)) # adjust this value to fit inside Hbox
 	
-	var desc_label = panel.get_node("AbilityDesc") as RichTextLabel
+	var desc_label = panel.get_node("UnitDesc") as RichTextLabel
 	desc_label.clear()
 	desc_label.append_text("[b]" + item_name + "[/b]\n" + item_data.description)
 	

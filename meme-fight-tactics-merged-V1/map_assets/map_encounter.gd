@@ -13,24 +13,26 @@ const icons := {
 
 var scene_paths := {
 	Encounter.Type.NOT_ASSIGNED : "",
-	Encounter.Type.BATTLE: "battle.path",
+	Encounter.Type.BATTLE: "",
 	Encounter.Type.AB_SHOP: "res://menus/shop_phase.tscn",
 	Encounter.Type.U_SHOP: "res://menus/unit_shop_phase.tscn",
-	Encounter.Type.SPECIAL_EVENT: "res://menus/unit_shop_phase.tscn",
-	Encounter.Type.BOSS_BATTLE: "boss_battle.path"
+	Encounter.Type.SPECIAL_EVENT: "",
+	Encounter.Type.BOSS_BATTLE: ""
 }
 
 	
 @onready var sprite_2d: Sprite2D = $Visuals/Sprite2D
 @onready var line_2d: Line2D = $Visuals/Line2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var map_generator: MapGenerator = $MapGenerator
 	
 var available := false : set = set_available
 var encounter: Encounter : set = set_encounter
 
 func _ready() -> void:
-	await get_tree().create_timer(3).timeout
-	available = true
+	if encounter == null:
+		await get_tree().create_timer(3).timeout
+		available = true
 	
 func set_available(new_value: bool) -> void:
 	available = new_value
@@ -51,7 +53,6 @@ func set_encounter(new_data: Encounter) -> void:
 func show_selected() -> void:
 	line_2d.modulate = Color.WHITE
 
-
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not available:
 		return
@@ -68,3 +69,4 @@ func _on_map_encounter_selected() -> void:
 	
 	if encounter.type in scene_paths:
 		get_tree().change_scene_to_file(scene_paths[encounter.type])
+		
