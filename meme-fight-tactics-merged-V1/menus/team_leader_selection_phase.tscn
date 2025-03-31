@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjekkkm3a4tb8"]
+
+[ext_resource type="Script" path="res://menus/team_leader_selection_phase.gd" id="1_33ddk"]
+[ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="1_u3gbu"]
+[ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_0dcyu"]
+[ext_resource type="Texture2D" uid="uid://bv81mi3lydrnv" path="res://test_textures/shop_item_cards/ShopCard1.png" id="4_gryo6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lum15"]
+bg_color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0oh3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.0588235, 1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_frbkb"]
+
+[node name="TeamLeaderSelectionPhase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_33ddk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 352.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lum15")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 96.0
+offset_right = 488.0
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("1_u3gbu")
+text = "select your team leader"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 48.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_0dcyu")
+text = "back"
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 272.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0oh3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TeamLeader1" type="TextureButton" parent="Panel/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gryo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/PanelContainer/HBoxContainer/TeamLeader1"]
+position = Vector2(46, 28.4375)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_frbkb")
+
+[node name="leader_desc" type="RichTextLabel" parent="Panel/PanelContainer/HBoxContainer/TeamLeader1"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 60.0
+offset_right = 86.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("2_0dcyu")
+theme_override_fonts/bold_font = ExtResource("1_u3gbu")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "name
+stats"
+
+[node name="TeamLeader2" type="TextureButton" parent="Panel/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gryo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/PanelContainer/HBoxContainer/TeamLeader2"]
+position = Vector2(46, 28.4375)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_frbkb")
+
+[node name="leader_desc" type="RichTextLabel" parent="Panel/PanelContainer/HBoxContainer/TeamLeader2"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 60.0
+offset_right = 86.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("2_0dcyu")
+theme_override_fonts/bold_font = ExtResource("1_u3gbu")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "name
+stats"
+
+[node name="TeamLeader3" type="TextureButton" parent="Panel/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(92, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gryo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/PanelContainer/HBoxContainer/TeamLeader3"]
+position = Vector2(46, 28.4375)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_frbkb")
+
+[node name="leader_desc" type="RichTextLabel" parent="Panel/PanelContainer/HBoxContainer/TeamLeader3"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 60.0
+offset_right = 86.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("2_0dcyu")
+theme_override_fonts/bold_font = ExtResource("1_u3gbu")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "name
+stats"
+
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]
