@@ -69,9 +69,12 @@ var player_inventory = {
 
 @onready var shopkeeper_text = $ShopPanel/RightsideVBox/RerollPanel/Panel/ShopKeeperTextBox
 @onready var player_curr_text = $ShopPanel/RightsideVBox/RerollPanel/CurrentPlayerCurrency
+@onready var shopkeeper : AnimatedSprite2D = $ShopPanel/RightsideVBox/ShopkeeperSprite
+
 func _ready():
 	randomize()
 	populate_shop()
+	shopkeeper.play("default")
 	shopkeeper_text.text = "welcome to the shop"
 	player_curr_text.text = str(player_currency)
 	
@@ -155,3 +158,7 @@ func _on_reroll_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://map_assets/Map.tscn")
+
+
+func _on_buy_xp_button_pressed() -> void:
+	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://65ax6igpeojb"]
+[gd_scene load_steps=27 format=3 uid="uid://65ax6igpeojb"]
 
 [ext_resource type="Script" path="res://menus/shop_phase.gd" id="1_3k0ur"]
 [ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_d0qmr"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="3_epv8t"]
 [ext_resource type="Texture2D" uid="uid://cbos70gpogf02" path="res://test_textures/shop_item_cards/ShopCard3.png" id="3_j4rdu"]
 [ext_resource type="Texture2D" uid="uid://canj7b71aae57" path="res://test_textures/HoundPiece_Icon.png" id="4_c03tn"]
+[ext_resource type="Texture2D" uid="uid://dkwqbwvrbmx6a" path="res://art/ShopkeeperWindow-Sheet.png" id="7_5b3tm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu7n7"]
 bg_color = Color(0.129558, 0.129559, 0.129558, 1)
@@ -27,9 +28,6 @@ texture = ExtResource("2_vio2v")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xct2k"]
 texture = ExtResource("3_j4rdu")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cpnbq"]
-size = Vector2(128, 128)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sewb"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 1)
 border_width_left = 3
@@ -43,6 +41,98 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w6hx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcef1"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 8, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi0qp"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 148, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pfhq"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 288, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eh7h"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 428, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh7k6"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 568, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3yol"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 708, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdu85"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 848, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em8qo"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 988, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r4gr"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 1128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8hil"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 1268, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c47hi"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 1408, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0gck"]
+atlas = ExtResource("7_5b3tm")
+region = Rect2(8, 1548, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cn75h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcef1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi0qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pfhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eh7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh7k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3yol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdu85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em8qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r4gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8hil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c47hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0gck")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="shop_phase" type="Control"]
 custom_minimum_size = Vector2(640, 350)
@@ -502,14 +592,9 @@ metadata/_edit_use_anchors_ = true
 [node name="RightsideVBox" type="VBoxContainer" parent="ShopPanel"]
 layout_mode = 1
 offset_left = 480.0
-offset_top = 16.0
+offset_top = 155.0
 offset_right = 608.0
 offset_bottom = 336.0
-
-[node name="ShopkeeperImage" type="TextureRect" parent="ShopPanel/RightsideVBox"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("PlaceholderTexture2D_cpnbq")
 
 [node name="RerollPanel" type="Panel" parent="ShopPanel/RightsideVBox"]
 layout_mode = 2
@@ -519,13 +604,23 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7sewb")
 [node name="RerollButton" type="Button" parent="ShopPanel/RightsideVBox/RerollPanel"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 67.0
+offset_top = 63.0
 offset_right = 119.0
-offset_bottom = 122.0
+offset_bottom = 101.0
 theme_override_fonts/font = ExtResource("2_d0qmr")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 12
 text = "reroll
 (150)"
+
+[node name="BuyXPButton" type="Button" parent="ShopPanel/RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 118.0
+offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("2_d0qmr")
+theme_override_font_sizes/font_size = 12
+text = "XP"
 
 [node name="Panel" type="Panel" parent="ShopPanel/RightsideVBox/RerollPanel"]
 layout_mode = 0
@@ -546,19 +641,19 @@ text = "test text lmao"
 [node name="ExitButton" type="Button" parent="ShopPanel/RightsideVBox/RerollPanel"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 141.0
+offset_top = 150.0
 offset_right = 119.0
-offset_bottom = 169.0
+offset_bottom = 178.0
 theme_override_fonts/font = ExtResource("2_d0qmr")
 theme_override_font_sizes/font_size = 8
 text = "exit shop"
 
 [node name="CurrencyTexture" type="TextureRect" parent="ShopPanel/RightsideVBox/RerollPanel"]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 33.0
-offset_right = 99.0
-offset_bottom = 61.0
+offset_left = 66.0
+offset_top = 32.0
+offset_right = 98.0
+offset_bottom = 60.0
 texture = ExtResource("4_c03tn")
 expand_mode = 2
 stretch_mode = 5
@@ -574,5 +669,12 @@ theme_override_fonts/bold_italics_font = ExtResource("3_epv8t")
 theme_override_font_sizes/bold_italics_font_size = 16
 text = "200"
 
+[node name="ShopkeeperSprite" type="AnimatedSprite2D" parent="ShopPanel/RightsideVBox"]
+position = Vector2(62, -75)
+sprite_frames = SubResource("SpriteFrames_cn75h")
+frame = 9
+frame_progress = 0.556811
+
 [connection signal="pressed" from="ShopPanel/RightsideVBox/RerollPanel/RerollButton" to="." method="_on_reroll_button_pressed"]
+[connection signal="pressed" from="ShopPanel/RightsideVBox/RerollPanel/BuyXPButton" to="." method="_on_buy_xp_button_pressed"]
 [connection signal="pressed" from="ShopPanel/RightsideVBox/RerollPanel/ExitButton" to="." method="_on_exit_button_pressed"]
