@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhw2vpdu2yl7d"]
+
+[ext_resource type="Script" path="res://scenes/rewards.gd" id="1_otsys"]
+[ext_resource type="PackedScene" uid="uid://betc1e5jjhoxn" path="res://scenes/reward_button.tscn" id="2_7vjbl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_txtda"]
+font_size = 12
+
+[node name="battle_rewards" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_otsys")
+
+[node name="BackgroundDimmer" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(16, 8.76)
+color = Color(0, 0, 0, 0.439216)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 224.0
+offset_top = 32.0
+offset_right = 310.0
+offset_bottom = 109.0
+scale = Vector2(1.84, 3.16)
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Battle Over"
+label_settings = SubResource("LabelSettings_txtda")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(105, 60)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/RewardContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Rewards" type="VBoxContainer" parent="VBoxContainer/RewardContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RewardButton" parent="VBoxContainer/RewardContainer/MarginContainer/Rewards" instance=ExtResource("2_7vjbl")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer/Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_left = 35.8696
+offset_top = 0.848088
+offset_right = 121.87
+offset_bottom = 31.8481
+scale = Vector2(0.404239, 0.326452)
+text = "Continue"
+
+[connection signal="pressed" from="VBoxContainer/Control/ContinueButton" to="." method="_on_continue_button_pressed"]

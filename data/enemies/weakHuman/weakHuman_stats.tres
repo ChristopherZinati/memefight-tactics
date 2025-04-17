@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cd6tib2ml8cxm"]
+
+[ext_resource type="Script" path="res://data/enemies/testenemy/enemy_stats.gd" id="1_16vqo"]
+
+[resource]
+script = ExtResource("1_16vqo")
+name = "weak human"
+rarity = 0
+skin_coordinates = Vector2i(0, 0)
+max_health = 100
+max_energy = 100
+attack_speed = 0.6
+attack_damage = 2

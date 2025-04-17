@@ -1,0 +1,299 @@
+[gd_scene load_steps=27 format=3 uid="uid://cbtjmxiobdhnd"]
+
+[ext_resource type="Script" path="res://data/enemies/testenemy/enemy.gd" id="1_8hpjr"]
+[ext_resource type="Resource" uid="uid://5nt1eup0rijp" path="res://data/enemies/strongHuman/strongHuman_stats.tres" id="2_x5eac"]
+[ext_resource type="Texture2D" uid="uid://dp84lvu5qujk5" path="res://art/StrongHuman-Sheet.png" id="3_g6qic"]
+[ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_14tt5"]
+[ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="5_c3dij"]
+[ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_rcwen"]
+[ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_mjles"]
+[ext_resource type="Script" path="res://scenes/winning.gd" id="8_dosmv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_disos"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 0, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u5h2"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 45, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql2qm"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 90, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsygl"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 0, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hcng"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 0, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ae70"]
+atlas = ExtResource("3_g6qic")
+region = Rect2(0, 45, 48, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l74ho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_disos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql2qm")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsygl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hcng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ae70")
+}],
+"loop": true,
+"name": &"win",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87f7o"]
+size = Vector2(28, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_br7uk"]
+radius = 18.0434
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85fqn"]
+bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixsok"]
+bg_color = Color(0.207516, 0.583692, 0.227094, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o50bq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s4oy"]
+bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
+
+[sub_resource type="Animation" id="Animation_2gb3w"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/Attacking")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deal_damage"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tmp5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3fngy"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8jfa5"]
+resource_name = "win"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1li4"]
+_data = {
+"RESET": SubResource("Animation_tmp5k"),
+"attack": SubResource("Animation_2gb3w"),
+"idle": SubResource("Animation_3fngy"),
+"win": SubResource("Animation_8jfa5")
+}
+
+[node name="strongHuman" type="CharacterBody2D" node_paths=PackedStringArray("anim") groups=["enemies"]]
+light_mask = 3
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_8hpjr")
+stats = ExtResource("2_x5eac")
+anim = NodePath("AnimationPlayer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 11)
+sprite_frames = SubResource("SpriteFrames_l74ho")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_87f7o")
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(-11, -14)
+scale = Vector2(1.76, 1.6)
+collision_layer = 2
+
+[node name="RangeShape" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(16, 17)
+scale = Vector2(1, 0.92)
+shape = SubResource("CircleShape2D_br7uk")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "attack_range")]
+script = ExtResource("4_14tt5")
+initial_state = NodePath("Pathfinding")
+attack_range = NodePath("../AttackRange")
+
+[node name="Pathfinding" type="Node" parent="StateMachine"]
+script = ExtResource("5_c3dij")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_rcwen")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("7_mjles")
+
+[node name="Winning" type="Node" parent="StateMachine"]
+script = ExtResource("8_dosmv")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 7.0
+offset_bottom = 23.0
+scale = Vector2(6.32, 0.0800015)
+theme_override_styles/background = SubResource("StyleBoxFlat_85fqn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ixsok")
+value = 100.0
+show_percentage = false
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyBar" type="ProgressBar" parent="."]
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 7.0
+offset_bottom = 25.0
+scale = Vector2(6.32, 0.0799999)
+theme_override_styles/background = SubResource("StyleBoxFlat_o50bq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3s4oy")
+show_percentage = false
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c1li4")
+}

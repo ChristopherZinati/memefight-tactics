@@ -1,0 +1,535 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbhqwhdvjp7dy"]
+
+[ext_resource type="Texture2D" uid="uid://canj7b71aae57" path="res://test_textures/HoundPiece_Icon.png" id="1_g0o75"]
+[ext_resource type="Texture2D" uid="uid://csbr2jhodm823" path="res://test_textures/shop_item_cards/ShopCard2.png" id="1_nyr33"]
+[ext_resource type="Script" path="res://menus/unit_shop_phase.gd" id="1_wbla4"]
+[ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_iua4q"]
+[ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="4_5axev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d65ml"]
+bg_color = Color(0.165656, 0.165656, 0.165656, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.0588235, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lph7x"]
+texture = ExtResource("1_nyr33")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0q4av"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_13qjm"]
+size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3kdj"]
+
+[node name="UnitShopPhase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wbla4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 352.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Panel"]
+
+[node name="ForSalePanel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 448.0
+offset_bottom = 336.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d65ml")
+
+[node name="Label" type="Label" parent="Panel/ForSalePanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 57.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("2_iua4q")
+text = "Units"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ForSalePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -144.0
+offset_right = 200.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UnitPanelTop" type="Control" parent="Panel/ForSalePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UnitHboxTop" type="HBoxContainer" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 390.0
+offset_bottom = 142.0
+
+[node name="Unit1" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit1"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit2" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit2"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit3" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit3"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit4" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit4"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelTop/UnitHboxTop/Unit4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitPanelBottom" type="Control" parent="Panel/ForSalePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UnitHboxBottom" type="HBoxContainer" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 390.0
+offset_bottom = 142.0
+
+[node name="Unit1" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit1"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit2" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit2"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit3" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit3"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unit4" type="Panel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lph7x")
+
+[node name="UnitSprite" type="Sprite2D" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit4"]
+position = Vector2(45.375, 30)
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_0q4av")
+
+[node name="UnitDesc" type="RichTextLabel" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -63.0
+offset_right = 33.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
+
+[node name="BuyButton" type="Button" parent="Panel/ForSalePanel/VBoxContainer/UnitPanelBottom/UnitHboxBottom/Unit4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.440147
+anchor_top = 0.708333
+anchor_right = 0.565445
+anchor_bottom = 0.958333
+offset_left = -0.136002
+offset_top = 4.99999
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 10
+text = "price"
+
+[node name="RightsideVBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 16.0
+offset_right = 608.0
+offset_bottom = 336.0
+
+[node name="ShopkeeperImage" type="TextureRect" parent="RightsideVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("PlaceholderTexture2D_13qjm")
+
+[node name="RerollPanel" type="Panel" parent="RightsideVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_d65ml")
+
+[node name="RerollButton" type="Button" parent="RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 67.0
+offset_right = 121.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 12
+text = "reroll
+(150)"
+
+[node name="Panel" type="Panel" parent="RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 121.0
+offset_bottom = 29.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3kdj")
+
+[node name="ShopKeeperTextBox" type="RichTextLabel" parent="RightsideVBox/RerollPanel/Panel"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 23.0
+theme_override_fonts/normal_font = ExtResource("2_iua4q")
+theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_font_sizes/normal_font_size = 8
+text = "test text lmao"
+
+[node name="CurrencyTexture" type="TextureRect" parent="RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 33.0
+offset_right = 99.0
+offset_bottom = 61.0
+texture = ExtResource("1_g0o75")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CurrentPlayerCurrency" type="RichTextLabel" parent="RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 67.0
+offset_bottom = 61.0
+theme_override_font_sizes/bold_italics_font_size = 16
+text = "200"
+
+[node name="ExitButton" type="Button" parent="RightsideVBox/RerollPanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 141.0
+offset_right = 121.0
+offset_bottom = 166.0
+theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_font_sizes/font_size = 12
+text = "exit shop"
+
+[connection signal="pressed" from="RightsideVBox/RerollPanel/ExitButton" to="." method="_on_exit_button_pressed"]
