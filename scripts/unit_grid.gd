@@ -76,7 +76,8 @@ func _on_battle_started():
 
 func fill_bench(owned_units):
 	var dragger = get_node("/root/Run/CurrentView/Battle/UnitDragger")
-	for unit in owned_units:
+	for unit_scene in owned_units:
+		var unit = unit_scene.instantiate()
 		add_unit(get_first_empty_tile(), unit)
 		add_child(unit)
 		dragger.setup_unit(unit)

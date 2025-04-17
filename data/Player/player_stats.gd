@@ -30,7 +30,7 @@ func gain_gold(amount: int) -> void:
 	gold += amount
 
 
-func add_unit(unit: DraggableUnit) -> void:
+func add_unit(unit: PackedScene) -> void:
 	units.append(unit)
 
 

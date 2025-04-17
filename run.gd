@@ -25,10 +25,9 @@ func _ready() -> void:
 	events.continue_button_pressed.connect(_on_continue_button_pressed)
 
 
-func _on_team_leader_selected(leader: Node):
+func _on_team_leader_selected(leader: PackedScene):
 	player = PlayerStats.new()
 	
-	leader.unit_id = 0
 	player.add_unit(leader)
 	#print(player.units)
 	events.leader_selection_exited.emit()

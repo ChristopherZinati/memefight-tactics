@@ -116,6 +116,6 @@ func _on_back_button_pressed() -> void:
 
 func _on_team_leader_pressed() -> void:
 	var leader_scene = preload("res://scenes/drag_testUnit.tscn")
-	var leader = leader_scene.instantiate()
-	events.team_leader_selected.emit(leader)
+	#var leader = leader_scene.instantiate()
+	events.team_leader_selected.emit(leader_scene)
 	
