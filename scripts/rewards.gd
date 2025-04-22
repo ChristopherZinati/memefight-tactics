@@ -34,8 +34,8 @@ func add_gold_reward(amount: int):
 func _on_reward_taken(_amount: int):
 	#player_stats.gold += amount
 	
-	#get_node("/root/Run").player.gold += amount
-	pass
+	get_node("/root/Run").player.gold += _amount
+
 
 
 func _on_continue_button_pressed() -> void:

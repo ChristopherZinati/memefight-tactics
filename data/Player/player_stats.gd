@@ -4,10 +4,12 @@ extends Resource
 @export var current_level: int = 1
 var xp_threshold := 10 
 @export var experience: int = 0
-@export var gold: int = 0
+@export var gold: int = 10000
 @export var deployable_units: int = 1
-@export var units: Array = []
-#@export var items: Array = []
+#var units: Array[OwnedUnit] = []
+var units := {} # Dictionary: { id: OwnedUnit }
+var next_unit_id := 0
+var items: Array = []
 var buffs: Array[Buff] = []
 var battles_won: int = 0
 
@@ -25,13 +27,16 @@ func gain_xp(amount: int) -> void:
 		experience = gained_xp
 	experience += amount
 
-
 func gain_gold(amount: int) -> void:
 	gold += amount
 
+func lose_gold(amount: int) -> void:
+	gold -= amount
 
-func add_unit(unit: PackedScene) -> void:
-	units.append(unit)
+func add_unit(unit: OwnedUnit) -> void:
+	units[next_unit_id] = unit
+	next_unit_id += 1
+	print(units)
 
 
 func add_buff(buff: Buff):

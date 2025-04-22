@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhw2vpdu2yl7d"]
 
-[ext_resource type="Script" path="res://scenes/rewards.gd" id="1_otsys"]
+[ext_resource type="Script" path="res://scripts/rewards.gd" id="1_otsys"]
 [ext_resource type="PackedScene" uid="uid://betc1e5jjhoxn" path="res://scenes/reward_button.tscn" id="2_7vjbl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_txtda"]

@@ -1,7 +1,17 @@
+class_name DraggableUnit
 extends Area2D
+
+
+@onready var skin: Sprite2D = $TestSprite
+@onready var health_bar: ProgressBar= $HealthBar
+@onready var energy_bar: ProgressBar= $EnergyBar
 @onready var drag_and_drop: DragAndDrop = $DragAndDrop
 @onready var rag_doll_drag: RagDollDrag = $RagDollDrag
 
+#assign upon acquiring unit
+@export var unit_id: int
+
+var unique_id: int
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
@@ -26,7 +36,6 @@ func _on_mouse_entered() -> void:
 	if drag_and_drop.dragging:
 		return
 	
-
 
 
 func _on_mouse_exited() -> void:

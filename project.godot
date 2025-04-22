@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 events="*res://global/events.gd"
+ShopItems="*res://global/shop_items.gd"
 
 [debug]
 

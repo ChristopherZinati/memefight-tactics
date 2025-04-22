@@ -7,31 +7,32 @@ signal die
 @export var unit_id: int
 
 @export var battle: Battle
-@export var stats: UnitStats : set = set_stats
+@export var stats: UnitStats #: set = set_stats
 @export var anim: AnimationPlayer
 
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var energy_bar: ProgressBar = $EnergyBar
 @onready var skin: AnimatedSprite2D = $AnimatedSprite2D
-
+var unique_id: int
 
 func _ready() -> void:
 	stats.stats_changed.connect(_on_stats_changed)
 	health_bar.max_value = stats.max_health
+	health_bar.value = stats.health
 	energy_bar.max_value = stats.max_energy
 	
 	if battle:
 		$StateMachine.battle = battle
 		$StateMachine/Pathfinding.battle = battle
+	print("battle start stats:\n", "health: ", self.stats.health)
 
 
 
 func set_stats(value: UnitStats) -> void:
-	stats=value.create_instance()
-	
+	#stats=value.create_instance()
+	stats=value
 	if value == null:
 		return
-	
 	if not is_node_ready():
 		await ready
 	
@@ -46,11 +47,3 @@ func _on_stats_changed(stat_name: String):
 				die.emit()
 		"energy":
 			energy_bar.value = stats.energy
-
-
-func apply_buff(buff: Buff):
-	var stat_value = stats.get(buff.stat)
-	if stat_value:
-		stats.set(buff.stat, stat_value + buff.amount)
-	else:
-		print("Error: Stat not found")

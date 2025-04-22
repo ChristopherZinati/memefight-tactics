@@ -71,14 +71,24 @@ func _on_pre_battle_over() -> void:
 						var new_unit = new_unit_scene.instantiate()
 						new_unit.name = "Unit" +str(i)
 						new_unit.unit_id = entity.unit_id
+						new_unit.unique_id = entity.unique_id
 						# update in grid
 						unit_grid.remove_unit(unit)
 						unit_grid.add_entity(unit, new_unit)
 						# update in scene
+						var owned_units = get_node("/root/Run").player.units
+						for key in owned_units:
+							if new_unit.unique_id == key:
+								if owned_units[key].stats != null:
+									new_unit.set_stats(owned_units[key].stats)
+								else:
+									new_unit.set_stats(new_unit.stats.create_instance())
+							else: pass
 						entity.get_parent().add_child(new_unit)
 						entity.get_parent().remove_child(entity)
 						# preserve its original position
 						new_unit.global_position = play_area.get_global_from_tile(unit) + -HALF_CELL_SIZE
+						
 
 	start_battle()
 

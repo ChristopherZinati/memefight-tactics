@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbhqwhdvjp7dy"]
+[gd_scene load_steps=24 format=3 uid="uid://bbhqwhdvjp7dy"]
 
-[ext_resource type="Texture2D" uid="uid://canj7b71aae57" path="res://test_textures/HoundPiece_Icon.png" id="1_g0o75"]
-[ext_resource type="Texture2D" uid="uid://csbr2jhodm823" path="res://test_textures/shop_item_cards/ShopCard2.png" id="1_nyr33"]
-[ext_resource type="Script" path="res://menus/unit_shop_phase.gd" id="1_wbla4"]
-[ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_iua4q"]
-[ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="4_5axev"]
+[ext_resource type="Script" path="res://scripts/unit_shop_phase.gd" id="1_7i32b"]
+[ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_jishp"]
+[ext_resource type="Texture2D" uid="uid://csbr2jhodm823" path="res://test_textures/shop_item_cards/ShopCard2.png" id="3_uejbp"]
+[ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="4_2sc2n"]
+[ext_resource type="Texture2D" uid="uid://canj7b71aae57" path="res://test_textures/HoundPiece_Icon.png" id="5_3vid3"]
+[ext_resource type="Texture2D" uid="uid://dkwqbwvrbmx6a" path="res://art/ShopkeeperWindow-Sheet.png" id="6_an68s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d65ml"]
 bg_color = Color(0.165656, 0.165656, 0.165656, 1)
@@ -19,14 +20,103 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lph7x"]
-texture = ExtResource("1_nyr33")
+texture = ExtResource("3_uejbp")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0q4av"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_13qjm"]
-size = Vector2(128, 128)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3kdj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcef1"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 8, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi0qp"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 148, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pfhq"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 288, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eh7h"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 428, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh7k6"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 568, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3yol"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 708, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdu85"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 848, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em8qo"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 988, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r4gr"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 1128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8hil"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 1268, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c47hi"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 1408, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0gck"]
+atlas = ExtResource("6_an68s")
+region = Rect2(8, 1548, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1itcg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcef1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi0qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pfhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eh7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh7k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3yol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdu85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em8qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r4gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8hil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c47hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0gck")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="UnitShopPhase" type="Control"]
 layout_mode = 3
@@ -35,7 +125,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wbla4")
+script = ExtResource("1_7i32b")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -58,7 +148,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 57.0
 offset_bottom = 39.0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 text = "Units"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ForSalePanel"]
@@ -110,8 +200,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -127,7 +217,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -155,8 +245,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -172,7 +262,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -200,8 +290,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -217,7 +307,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -245,8 +335,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -262,7 +352,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -302,8 +392,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -319,7 +409,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -347,8 +437,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -364,7 +454,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -392,8 +482,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -409,7 +499,7 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 metadata/_edit_use_anchors_ = true
@@ -437,8 +527,8 @@ offset_right = 33.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 text = "insert item description here lol hjsajhjsjdhj ahdj hajhsd"
@@ -454,21 +544,16 @@ offset_left = -0.136002
 offset_top = 4.99999
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 10
 text = "price"
 
 [node name="RightsideVBox" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 480.0
-offset_top = 16.0
+offset_top = 149.0
 offset_right = 608.0
 offset_bottom = 336.0
-
-[node name="ShopkeeperImage" type="TextureRect" parent="RightsideVBox"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("PlaceholderTexture2D_13qjm")
 
 [node name="RerollPanel" type="Panel" parent="RightsideVBox"]
 layout_mode = 2
@@ -481,10 +566,9 @@ offset_left = 9.0
 offset_top = 67.0
 offset_right = 121.0
 offset_bottom = 121.0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 12
-text = "reroll
-(150)"
+text = "reroll (2)"
 
 [node name="Panel" type="Panel" parent="RightsideVBox/RerollPanel"]
 layout_mode = 0
@@ -498,8 +582,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_y3kdj")
 layout_mode = 0
 offset_right = 112.0
 offset_bottom = 23.0
-theme_override_fonts/normal_font = ExtResource("2_iua4q")
-theme_override_fonts/bold_font = ExtResource("4_5axev")
+theme_override_fonts/normal_font = ExtResource("2_jishp")
+theme_override_fonts/bold_font = ExtResource("4_2sc2n")
 theme_override_font_sizes/normal_font_size = 8
 text = "test text lmao"
 
@@ -509,7 +593,7 @@ offset_left = 67.0
 offset_top = 33.0
 offset_right = 99.0
 offset_bottom = 61.0
-texture = ExtResource("1_g0o75")
+texture = ExtResource("5_3vid3")
 expand_mode = 2
 stretch_mode = 5
 
@@ -528,8 +612,13 @@ offset_left = 9.0
 offset_top = 141.0
 offset_right = 121.0
 offset_bottom = 166.0
-theme_override_fonts/font = ExtResource("2_iua4q")
+theme_override_fonts/font = ExtResource("2_jishp")
 theme_override_font_sizes/font_size = 12
 text = "exit shop"
 
+[node name="ShopkeeperSprite" type="AnimatedSprite2D" parent="RightsideVBox"]
+position = Vector2(64, -67)
+sprite_frames = SubResource("SpriteFrames_1itcg")
+
+[connection signal="pressed" from="RightsideVBox/RerollPanel/RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="RightsideVBox/RerollPanel/ExitButton" to="." method="_on_exit_button_pressed"]

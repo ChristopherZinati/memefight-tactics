@@ -22,6 +22,7 @@ signal map_node_chosen(type: String)
 #shop signals
 signal shop_item_purchased
 signal xp_purchased
+signal exit_shop
 
 #global unit signals
 signal upgrade_unit

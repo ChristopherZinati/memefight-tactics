@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4a7yjhtol656"]
+[gd_scene load_steps=11 format=3 uid="uid://d4a7yjhtol656"]
 
-[ext_resource type="Script" path="res://data/units/testunit/draggable_unit.gd" id="1_e4lx8"]
+[ext_resource type="Script" path="res://data/units/unitProfile/draggable_unit.gd" id="1_e4lx8"]
 [ext_resource type="Texture2D" uid="uid://bn4iw87so8sv" path="res://art/StrongDog-0.png" id="2_31y38"]
 [ext_resource type="Script" path="res://scripts/rag_doll_drag.gd" id="2_lq7br"]
+[ext_resource type="Resource" uid="uid://bw6ascpg6lcc1" path="res://data/units/strongDog/strong_dog_stats.tres" id="2_uu1wr"]
 [ext_resource type="Script" path="res://scripts/drag_and_drop.gd" id="3_rdjrp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2fxw"]
@@ -23,6 +24,7 @@ bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
 
 [node name="drag_strongDog" type="Area2D" groups=["units"]]
 script = ExtResource("1_e4lx8")
+base_stats = ExtResource("2_uu1wr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 10)
@@ -58,10 +60,8 @@ show_percentage = false
 metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
 
-[node name="RagDollDrag" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="RagDollDrag" type="Node" parent="."]
 script = ExtResource("2_lq7br")
-target = NodePath("")
 
-[node name="DragAndDrop" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="DragAndDrop" type="Node" parent="."]
 script = ExtResource("3_rdjrp")
-target = NodePath("")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bqltqyw2e57mo"]
 
-[ext_resource type="Script" path="res://data/enemies/testenemy/enemy.gd" id="1_buabf"]
+[ext_resource type="Script" path="res://data/enemies/enemyProfile/enemy.gd" id="1_buabf"]
 [ext_resource type="Resource" uid="uid://dtjqk53glyyid" path="res://data/enemies/testenemy/testenemy_stats.tres" id="2_wxif3"]
 [ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_6eu6e"]
 [ext_resource type="Texture2D" uid="uid://q8qkvhiojlks" path="res://art/Bagholder_Attack_Sheet.png" id="4_h61y7"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_1wyjp"]
 [ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_t40am"]
 [ext_resource type="Texture2D" uid="uid://bafh6ofndwhy1" path="res://art/Bagholder_Idle.png" id="8_0uhih"]
-[ext_resource type="Script" path="res://scenes/winning.gd" id="8_tu6fa"]
+[ext_resource type="Script" path="res://scripts/FSM/winning.gd" id="8_tu6fa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tn883"]
 size = Vector2(17, 29)

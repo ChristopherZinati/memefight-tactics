@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnfgeq33ckyl4"]
 
-[ext_resource type="Script" path="res://run.gd" id="1_gs4w0"]
-[ext_resource type="Script" path="res://current_view.gd" id="2_5r06m"]
-[ext_resource type="PackedScene" uid="uid://cjekkkm3a4tb8" path="res://menus/team_leader_selection_phase.tscn" id="3_svp4t"]
+[ext_resource type="Script" path="res://scripts/run.gd" id="1_gs4w0"]
+[ext_resource type="Script" path="res://scripts/current_view.gd" id="2_5r06m"]
+[ext_resource type="PackedScene" path="res://scenes/team_leader_selection_phase.tscn" id="3_svp4t"]
 [ext_resource type="PackedScene" uid="uid://clqxhx6kq21ch" path="res://map_assets/Map.tscn" id="4_h65u2"]
 
 [node name="Run" type="Node"]

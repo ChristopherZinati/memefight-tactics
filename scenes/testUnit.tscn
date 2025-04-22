@@ -1,13 +1,13 @@
 [gd_scene load_steps=29 format=3 uid="uid://dpvuq78h265ti"]
 
-[ext_resource type="Script" path="res://data/units/testunit/unit.gd" id="1_g8ux4"]
+[ext_resource type="Script" path="res://data/units/unitProfile/unit.gd" id="1_g8ux4"]
 [ext_resource type="Texture2D" uid="uid://ndyewsnflxww" path="res://art/TestSprite_Idle.png" id="1_uw5rp"]
 [ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="2_oj7lc"]
 [ext_resource type="Resource" uid="uid://cecdx1k70p32n" path="res://data/units/testunit/testunit.tres" id="2_ydu5r"]
 [ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_d7isi"]
 [ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_1lrfj"]
 [ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_qw67y"]
-[ext_resource type="Script" path="res://scenes/winning.gd" id="8_80f2k"]
+[ext_resource type="Script" path="res://scripts/FSM/winning.gd" id="8_80f2k"]
 [ext_resource type="Texture2D" uid="uid://c3fw5jdfwcgc7" path="res://art/TestSprite_Attack-Sheet.png" id="8_b2255"]
 [ext_resource type="Texture2D" uid="uid://b2p0u0asjqb5x" path="res://art/TestSprite.png" id="9_7k3mp"]
 

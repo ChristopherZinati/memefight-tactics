@@ -3,8 +3,8 @@ extends Node
 
 const choose_leader := null #preload the choose leader scene
 const battle_scene := preload("res://scenes/battle_scene.tscn")
-const basic_shop := preload("res://menus/shop_phase.tscn")
-const unit_shop := preload("res://menus/unit_shop_phase.tscn")
+const basic_shop := preload("res://scenes/shop_phase.tscn")
+const unit_shop := preload("res://scenes/unit_shop_phase.tscn")
 
 @onready var map: Node2D = $Map
 @onready var current_view: Node = $CurrentView
@@ -21,11 +21,12 @@ func _ready() -> void:
 	events.battle_lost.connect(_on_battle_lost)
 	events.shop_item_purchased.connect(_on_shop_item_purchased)
 	events.xp_purchased.connect(_on_xp_purchased)
+	events.exit_shop.connect(_on_shop_exited)
 	events.battle_over.connect(_on_battle_over)
 	events.continue_button_pressed.connect(_on_continue_button_pressed)
 
 
-func _on_team_leader_selected(leader: PackedScene):
+func _on_team_leader_selected(leader: OwnedUnit):
 	player = PlayerStats.new()
 	
 	player.add_unit(leader)
@@ -64,23 +65,34 @@ func load_battle():
 	get_node("CurrentView").add_child(battle)
 func load_basic_shop():
 	var b_shop = basic_shop.instantiate()
+	b_shop.player_stats = player
 	get_node("CurrentView").add_child(b_shop)
 func load_unit_shop():
 	var u_shop = unit_shop.instantiate()
+	u_shop.player_stats = player 
 	get_node("CurrentView").add_child(u_shop)
 
 
 func _on_unit_death(entity: Unit):
-	for unit in player.units:
-		if unit.unit_id == entity.unit_id:
-			player.units.erase(unit)
+	for key in player.units:
+		if key == entity.unique_id:
+			player.units.erase(key)
 			break
 
 
 func _on_battle_over():
 	player.battles_won += 1
 	player.gain_xp(2)
+	
 
+	var remaining_units = get_node("/root/Run/CurrentView/Battle/GameArea/BattleUnitGrid").get_children()
+	for unit in remaining_units:
+		var unique_id = unit.unique_id
+		if player.units.has(unique_id):
+			player.units[unique_id].stats = unit.stats
+			print("battle over stats:\n", "health: ", player.units[unique_id].stats.health)
+		else:
+			print("Warning: No matching profile for unit with id: ", unique_id)
 
 func _on_continue_button_pressed():
 	map.visible = true
@@ -107,3 +119,7 @@ func _on_shop_item_purchased(item):
 
 func _on_xp_purchased(amount: int):
 	player.gain_xp(amount)
+
+
+func _on_shop_exited():
+	map.visible = true

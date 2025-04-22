@@ -1,7 +1,7 @@
 class_name MapEncounter
 extends Area2D
 
-signal selected(encounter: Encounter)
+signal selected
 const icons := {
 	Encounter.Type.NOT_ASSIGNED: [null, Vector2.ONE],
 	Encounter.Type.BATTLE:[preload("res://map_assets/map_icons/battle.png"), Vector2.ONE],

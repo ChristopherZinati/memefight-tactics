@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=3 uid="uid://ck0dfy35lspkt"]
 
-[ext_resource type="Script" path="res://data/units/testunit/unit.gd" id="1_bkory"]
-[ext_resource type="Resource" uid="uid://cecdx1k70p32n" path="res://data/units/testunit/testunit.tres" id="2_gvagy"]
+[ext_resource type="Script" path="res://data/units/unitProfile/unit.gd" id="1_bkory"]
+[ext_resource type="Resource" uid="uid://bkl6aubi7wdd3" path="res://data/units/weakDog/weak_dog_stats.tres" id="2_4bflr"]
 [ext_resource type="Texture2D" uid="uid://bp4sqsisypugs" path="res://art/WeakDog-Sheet.png" id="3_hbhry"]
 [ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_apht8"]
 [ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="5_1lihg"]
 [ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_oxyey"]
 [ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_7qx7v"]
-[ext_resource type="Script" path="res://scenes/winning.gd" id="8_wwcvh"]
+[ext_resource type="Script" path="res://scripts/FSM/winning.gd" id="8_wwcvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a414t"]
 atlas = ExtResource("3_hbhry")
@@ -88,6 +88,34 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s4oy"]
 bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
 
+[sub_resource type="Animation" id="Animation_lywem"]
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="Animation" id="Animation_m1j0j"]
 resource_name = "attack"
 length = 0.5
@@ -131,9 +159,9 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_lywem"]
-length = 0.25
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_7kyek"]
+resource_name = "idle"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -153,10 +181,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_raweh"]
@@ -202,34 +230,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_7kyek"]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ix81o"]
 _data = {
 "RESET": SubResource("Animation_lywem"),
@@ -238,11 +238,13 @@ _data = {
 "win": SubResource("Animation_raweh")
 }
 
-[node name="weakDog" type="CharacterBody2D" groups=["units"]]
+[node name="weakDog" type="CharacterBody2D" node_paths=PackedStringArray("anim") groups=["units"]]
 light_mask = 3
 collision_mask = 3
 script = ExtResource("1_bkory")
-stats = ExtResource("2_gvagy")
+unit_id = 1
+stats = ExtResource("2_4bflr")
+anim = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(14, 11)

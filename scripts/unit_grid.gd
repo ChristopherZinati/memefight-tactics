@@ -71,16 +71,20 @@ func _on_battle_started():
 	is_battle_started = true
 	
 	if grid_type == "battle_grid":
-		print("Start Dictionary:", units)
+		pass
+		#print("Start Dictionary:", units)
 
 
 func fill_bench(owned_units):
 	var dragger = get_node("/root/Run/CurrentView/Battle/UnitDragger")
-	for unit_scene in owned_units:
-		var unit = unit_scene.instantiate()
-		add_unit(get_first_empty_tile(), unit)
-		add_child(unit)
-		dragger.setup_unit(unit)
+	for key in owned_units:
+		var drag_unit = owned_units[key].scene.instantiate()
+		drag_unit.unique_id = key
+		var tile = get_first_empty_tile()
+		add_unit(tile, drag_unit)
+		add_child(drag_unit)
+		drag_unit.global_position = play_area.get_global_from_tile(tile) + -battle.HALF_CELL_SIZE
+		dragger.setup_unit(drag_unit)
 
 
 func remove_unit(tile: Vector2i) -> void:
@@ -107,6 +111,8 @@ func get_first_empty_tile() -> Vector2i:
 		print("bench: " , units)
 	for tile in units:
 		if not is_tile_occupied(tile):
+			print("Found empty tile: ", tile)
+
 			return tile
 
 	# no empty tile

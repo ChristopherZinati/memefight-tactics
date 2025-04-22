@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3 uid="uid://bkl6aubi7wdd3"]
+
+[ext_resource type="Script" path="res://data/units/unitProfile/testunit_stats.gd" id="1_renpb"]
+
+[resource]
+script = ExtResource("1_renpb")
+name = "weak dog"
+rarity = 0
+gold_cost = 1
+skin_coordinates = Vector2i(0, 0)
+max_health = 100
+max_energy = 100
+attack_speed = 0.6
+attack_damage = 2
+block = 0

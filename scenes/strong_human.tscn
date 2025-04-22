@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=3 uid="uid://cbtjmxiobdhnd"]
 
-[ext_resource type="Script" path="res://data/enemies/testenemy/enemy.gd" id="1_8hpjr"]
+[ext_resource type="Script" path="res://data/enemies/enemyProfile/enemy.gd" id="1_8hpjr"]
 [ext_resource type="Resource" uid="uid://5nt1eup0rijp" path="res://data/enemies/strongHuman/strongHuman_stats.tres" id="2_x5eac"]
 [ext_resource type="Texture2D" uid="uid://dp84lvu5qujk5" path="res://art/StrongHuman-Sheet.png" id="3_g6qic"]
 [ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_14tt5"]
 [ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="5_c3dij"]
 [ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_rcwen"]
 [ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_mjles"]
-[ext_resource type="Script" path="res://scenes/winning.gd" id="8_dosmv"]
+[ext_resource type="Script" path="res://scripts/FSM/winning.gd" id="8_dosmv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_disos"]
 atlas = ExtResource("3_g6qic")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjekkkm3a4tb8"]
 
-[ext_resource type="Script" path="res://menus/team_leader_selection_phase.gd" id="1_33ddk"]
+[ext_resource type="Script" path="res://scripts/team_leader_selection_phase.gd" id="1_33ddk"]
 [ext_resource type="FontFile" uid="uid://0qkfplqvs6fw" path="res://assets/NK57 Monospace Ex Bd.otf" id="1_u3gbu"]
 [ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_0dcyu"]
 [ext_resource type="Texture2D" uid="uid://bv81mi3lydrnv" path="res://test_textures/shop_item_cards/ShopCard1.png" id="4_gryo6"]
