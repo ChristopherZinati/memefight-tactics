@@ -17,7 +17,7 @@
 bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we0dl"]
-bg_color = Color(0.207516, 0.583692, 0.227094, 1)
+bg_color = Color(0.898039, 0.137255, 0.219608, 1)
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rm5o"]

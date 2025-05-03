@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dg6r5p7fgewqg"]
 
 [ext_resource type="Script" path="res://data/units/unitProfile/draggable_unit.gd" id="1_d2thx"]
-[ext_resource type="Texture2D" uid="uid://tv3ubn6jvfcl" path="res://art/WeakDog-0.png" id="2_5qbil"]
+[ext_resource type="Texture2D" uid="uid://cmeaonxknc7pd" path="res://art/WeakDog-0.png" id="2_5qbil"]
 [ext_resource type="Script" path="res://scripts/rag_doll_drag.gd" id="2_qn7xa"]
 [ext_resource type="Script" path="res://scripts/drag_and_drop.gd" id="3_iw8ms"]
 
@@ -12,7 +12,7 @@ size = Vector2(26, 28)
 bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5t48"]
-bg_color = Color(0.207516, 0.583692, 0.227094, 1)
+bg_color = Color(0.898039, 0.137255, 0.219608, 1)
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gggv"]

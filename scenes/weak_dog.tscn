@@ -2,48 +2,48 @@
 
 [ext_resource type="Script" path="res://data/units/unitProfile/unit.gd" id="1_bkory"]
 [ext_resource type="Resource" uid="uid://bkl6aubi7wdd3" path="res://data/units/weakDog/weak_dog_stats.tres" id="2_4bflr"]
-[ext_resource type="Texture2D" uid="uid://bp4sqsisypugs" path="res://art/WeakDog-Sheet.png" id="3_hbhry"]
+[ext_resource type="Texture2D" uid="uid://cke3uf24qchjj" path="res://art/WeakDog-Sheet-fixed.png" id="3_jju1w"]
 [ext_resource type="Script" path="res://scripts/FSM/state_machine.gd" id="4_apht8"]
 [ext_resource type="Script" path="res://scripts/FSM/pathfinder.gd" id="5_1lihg"]
 [ext_resource type="Script" path="res://scripts/FSM/attacking.gd" id="6_oxyey"]
 [ext_resource type="Script" path="res://scripts/FSM/death.gd" id="7_7qx7v"]
 [ext_resource type="Script" path="res://scripts/FSM/winning.gd" id="8_wwcvh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a414t"]
-atlas = ExtResource("3_hbhry")
+[sub_resource type="AtlasTexture" id="AtlasTexture_povm3"]
+atlas = ExtResource("3_jju1w")
 region = Rect2(0, 0, 48, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cq6ws"]
-atlas = ExtResource("3_hbhry")
+[sub_resource type="AtlasTexture" id="AtlasTexture_50add"]
+atlas = ExtResource("3_jju1w")
 region = Rect2(0, 45, 48, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_43q18"]
-atlas = ExtResource("3_hbhry")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwvrd"]
+atlas = ExtResource("3_jju1w")
 region = Rect2(0, 90, 48, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_43xyh"]
-atlas = ExtResource("3_hbhry")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb08i"]
+atlas = ExtResource("3_jju1w")
 region = Rect2(0, 0, 48, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bylo8"]
-atlas = ExtResource("3_hbhry")
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ehr"]
+atlas = ExtResource("3_jju1w")
+region = Rect2(0, 0, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8qpu"]
+atlas = ExtResource("3_jju1w")
 region = Rect2(0, 90, 48, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wja5m"]
-atlas = ExtResource("3_hbhry")
-region = Rect2(0, 0, 48, 45)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2au3d"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a414t")
+"texture": SubResource("AtlasTexture_povm3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cq6ws")
+"texture": SubResource("AtlasTexture_50add")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_43q18")
+"texture": SubResource("AtlasTexture_bwvrd")
 }],
 "loop": true,
 "name": &"attack",
@@ -51,7 +51,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_43xyh")
+"texture": SubResource("AtlasTexture_rb08i")
 }],
 "loop": true,
 "name": &"idle",
@@ -59,10 +59,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bylo8")
+"texture": SubResource("AtlasTexture_01ehr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wja5m")
+"texture": SubResource("AtlasTexture_n8qpu")
 }],
 "loop": true,
 "name": &"win",
@@ -79,7 +79,7 @@ radius = 18.0434
 bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixsok"]
-bg_color = Color(0.207516, 0.583692, 0.227094, 1)
+bg_color = Color(0.898039, 0.137255, 0.219608, 1)
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o50bq"]

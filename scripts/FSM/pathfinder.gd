@@ -36,11 +36,9 @@ func enter():
 		target = find_nearest_target()
 		path = generate_path(target)
 	
-		if target:
-			fsm.target = target
+		#if target:
+			#fsm.target = target
 
-# will need to set up moving animation 
-# in either enter or update
 
 func update(delta):
 	if battle_started:
@@ -49,7 +47,6 @@ func update(delta):
 
 
 func exit():
-	#stop moving animation
 	fsm.target = target_entity
 	path.clear()
 	pass
@@ -57,12 +54,9 @@ func exit():
 
 func _on_battle_started():
 	battle_started = true
-
 	
 	current_tile = play_area.get_tile_from_global(owner_entity.global_position)
-	
 	target = find_nearest_target()
-	
 	path = generate_path(target)
 
 	#print(owner_entity, " current tile ", current_tile," path to target: ",path)
@@ -175,7 +169,7 @@ func follow_path(_delta):
 	else:
 		unit_grid.reserved_tiles[next_tile] = self
 
-	# check for targets in range
+	# check for valid target body inside the attack range
 	if fsm.attack_range and fsm.attack_range.get_overlapping_bodies():
 		for body in fsm.attack_range.get_overlapping_bodies():
 			if valid_target(body):  
@@ -207,13 +201,3 @@ func get_entity_at_tile(target_tile: Vector2i):
 func update_tile(tile: Vector2i):
 	unit_grid.remove_unit(previous_tile)
 	unit_grid.add_entity(tile, owner_entity)
-
-
-# we might need this if problems arise
-#func _on_attack_range_body_entered(body: Node) -> void:
-		#if valid_target(body):  
-			#unit_grid.reserved_tiles.erase(next_tile)
-			#update_tile(current_tile)
-			#path.clear()
-			#state_transition.emit(self, "attacking")
-			#return

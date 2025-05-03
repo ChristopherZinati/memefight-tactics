@@ -5,11 +5,15 @@ const choose_leader := null #preload the choose leader scene
 const battle_scene := preload("res://scenes/battle_scene.tscn")
 const basic_shop := preload("res://scenes/shop_phase.tscn")
 const unit_shop := preload("res://scenes/unit_shop_phase.tscn")
+const pause_menu := preload("res://menus/pause_menu.tscn")
+const stats_overlay := preload("res://menus/player_stats_overlay.tscn")
 
 @onready var map: Node2D = $Map
 @onready var current_view: Node = $CurrentView
 
-var player: PlayerStats
+var player: PlayerStats 
+var pause: Control = null
+var stats_ovr: Node2D = null
 
 func _ready() -> void:
 	map.visible = false
@@ -24,14 +28,19 @@ func _ready() -> void:
 	events.exit_shop.connect(_on_shop_exited)
 	events.battle_over.connect(_on_battle_over)
 	events.continue_button_pressed.connect(_on_continue_button_pressed)
-
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS #for pause menu
 
 func _on_team_leader_selected(leader: OwnedUnit):
 	player = PlayerStats.new()
 	
 	player.add_unit(leader)
 	#print(player.units)
+	
 	events.leader_selection_exited.emit()
+	var overlay = stats_overlay.instantiate()
+	overlay.player_stats = player
+	add_child(overlay)
 
 
 func _on_has_no_view():
@@ -123,3 +132,57 @@ func _on_xp_purchased(amount: int):
 
 func _on_shop_exited():
 	map.visible = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause_game"):
+		if get_tree().paused:
+			_resume_game()
+		else:
+			_pause_game()
+	
+	if event.is_action_pressed("toggle_stats_overlay"):
+		if stats_ovr and stats_ovr.is_inside_tree():
+			_hide_stats()
+		else:
+			if player:
+				_show_stats()
+
+	
+func _pause_game() -> void:
+	get_tree().paused = true
+	pause = pause_menu.instantiate()
+	add_child(pause)
+	pause.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	pause.connect("resume", self._resume_game)
+	pause.connect("exit_to_map", self._on_return_to_map) 
+	pause.connect("exit_to_main_menu", self._quit_to_menu)
+
+
+func _resume_game() -> void:
+	get_tree().paused = false
+	if pause and pause.is_inside_tree():
+		pause.queue_free()
+		pause = null
+
+func _quit_to_menu() -> void:
+	_resume_game()
+	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+
+		
+func _on_return_to_map() -> void:
+	_resume_game()
+	map.visible = true
+	for child in current_view.get_children():
+		child.queue_free()
+
+
+func _show_stats() -> void:
+	stats_ovr = stats_overlay.instantiate()
+	stats_ovr.player_stats = player
+	add_child(stats_ovr)
+
+
+func _hide_stats() -> void:
+	if stats_ovr and stats_ovr.is_inside_tree():
+		stats_ovr.queue_free()
+		stats_ovr = null

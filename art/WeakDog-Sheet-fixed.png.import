@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp84lvu5qujk5"
-path="res://.godot/imported/StrongHuman-Sheet.png-f1310246328a12d4423dc818e4203c2f.ctex"
+uid="uid://cke3uf24qchjj"
+path="res://.godot/imported/WeakDog-Sheet-fixed.png-b46a5b4aad4593ae80660038e598ebc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/StrongHuman-Sheet.png"
-dest_files=["res://.godot/imported/StrongHuman-Sheet.png-f1310246328a12d4423dc818e4203c2f.ctex"]
+source_file="res://art/WeakDog-Sheet-fixed.png"
+dest_files=["res://.godot/imported/WeakDog-Sheet-fixed.png-b46a5b4aad4593ae80660038e598ebc9.ctex"]
 
 [params]
 

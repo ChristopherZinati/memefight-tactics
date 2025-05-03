@@ -8,15 +8,14 @@ extends Control
 @onready var shopkeeper : AnimatedSprite2D = $RightsideVBox/ShopkeeperSprite
 
 @export var player_stats: PlayerStats = PlayerStats.new() #should get overidden by the injected playerstats instance from run.gd
-var player_currency: int
+
 
 func _ready():
 	randomize()
 	populate_shop()
 	shopkeeper.play("default")
 	shopkeeper_text.text = "welcome to the shop"
-	player_currency = player_stats.gold
-	player_curr_text.text = str(player_currency)
+	player_curr_text.text = str(player_stats.gold)
 	
 func populate_shop():
 	for i in range(4):
@@ -57,8 +56,8 @@ func _on_buy_button_pressed(buy_button: Button) -> void:
 	var type = item_data.type
 	var price = item_data.price
 	
-	if player_currency >= price:
-		player_currency -= price
+	if player_stats.gold >= price:
+		player_stats.gold -= price
 		player_stats.lose_gold(price)
 		#player_inventory.append(item_name)
 		if type == "unit":
@@ -68,17 +67,17 @@ func _on_buy_button_pressed(buy_button: Button) -> void:
 			print(item_data.scene)
 			player_stats.add_unit(new_unit)
 			
-			player_curr_text.text = str(player_currency)
+			player_curr_text.text = str(player_stats.gold)
 			shopkeeper_text.text = "A fine purchase."
 	else:
 		print("insufficient funds")
 		shopkeeper_text.text = "sorry, you don't have enough coin"
 
 func _on_reroll_button_pressed() -> void:
-	if player_currency >= 2: #or whatever we set the reroll price to
+	if player_stats.gold >= 2: #or whatever we set the reroll price to
 		populate_shop()
-		player_currency -= 2
-		player_curr_text.text = str(player_currency)
+		player_stats.gold -= 2
+		player_curr_text.text = str(player_stats.gold)
 	else:
 		print("insufficient funds")
 		shopkeeper_text.text = "find more coin, then i'll get new stuff"

@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://csy7rttmt2w17"]
+
+[ext_resource type="Script" path="res://menus/player_stats_overlay.gd" id="1_buxol"]
+[ext_resource type="Texture2D" uid="uid://b2p0u0asjqb5x" path="res://art/TestSprite.png" id="2_rgfqj"]
+[ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="3_ajl11"]
+[ext_resource type="Texture2D" uid="uid://canj7b71aae57" path="res://test_textures/HoundPiece_Icon.png" id="4_vr2hy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syrgh"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+border_width_left = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.0588235, 1, 1)
+
+[node name="PlayerStatsOverlay" type="Node2D"]
+script = ExtResource("1_buxol")
+
+[node name="PlayerStatsOverlay" type="Panel" parent="."]
+offset_left = 128.0
+offset_right = 512.0
+offset_bottom = 40.0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_syrgh")
+
+[node name="TeamLeader" type="Sprite2D" parent="PlayerStatsOverlay"]
+position = Vector2(16, 16)
+texture = ExtResource("2_rgfqj")
+
+[node name="LevelText" type="RichTextLabel" parent="PlayerStatsOverlay/TeamLeader"]
+offset_left = 24.0
+offset_top = -8.0
+offset_right = 144.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource("3_ajl11")
+theme_override_font_sizes/normal_font_size = 16
+text = "level:"
+scroll_active = false
+
+[node name="XpText" type="RichTextLabel" parent="PlayerStatsOverlay/TeamLeader"]
+offset_left = 150.0
+offset_top = -8.0
+offset_right = 230.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource("3_ajl11")
+theme_override_font_sizes/normal_font_size = 16
+text = "XP:"
+scroll_active = false
+
+[node name="HoundCoinSprite" type="Sprite2D" parent="PlayerStatsOverlay"]
+position = Vector2(291, 17)
+scale = Vector2(0.583333, 0.583333)
+texture = ExtResource("4_vr2hy")
+
+[node name="CurrencyText" type="RichTextLabel" parent="PlayerStatsOverlay/HoundCoinSprite"]
+offset_left = 27.4286
+offset_top = -10.2857
+offset_right = 161.429
+offset_bottom = 10.7143
+theme_override_fonts/normal_font = ExtResource("3_ajl11")
+theme_override_font_sizes/normal_font_size = 18
+text = "$br"
+scroll_active = false

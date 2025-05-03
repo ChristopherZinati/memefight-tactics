@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://smmxwt5tjpmj"]
+[gd_scene load_steps=5 format=3 uid="uid://smmxwt5tjpmj"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_neyr8"]
 [ext_resource type="FontFile" uid="uid://p5gc78np4wnw" path="res://assets/NK57 Monospace Ex Rg.otf" id="2_g0iql"]
+
+[sub_resource type="Gradient" id="Gradient_5xga6"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.280375, 0.413227, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ebdy"]
+gradient = SubResource("Gradient_5xga6")
 
 [node name="mainMenu" type="Control"]
 custom_minimum_size = Vector2(640, 352)
@@ -19,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("GradientTexture2D_6ebdy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground"]
 layout_mode = 1
