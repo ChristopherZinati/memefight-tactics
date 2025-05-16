@@ -10,6 +10,6 @@ gold_cost = 1
 skin_coordinates = Vector2i(0, 0)
 max_health = 200
 max_energy = 100
-attack_speed = 0.3
+attack_speed = 0.5
 attack_damage = 20
 block = 0

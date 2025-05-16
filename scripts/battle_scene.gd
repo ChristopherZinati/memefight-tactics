@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 			
 			var reward_scene = load("res://scenes/rewards.tscn")
 			var reward_instance = reward_scene.instantiate()
-			reward_instance.gold_amount = (total_enemies * 4) - units_dead
+			reward_instance.gold_amount = ((total_enemies * 4) - units_dead) * 5
 			if enemy_count == 0:
 				reward_instance.battle_won = true
 			else:

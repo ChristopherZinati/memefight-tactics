@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="meme-fight-tactics"
-run/main_scene="res://scenes/battle_scene.tscn"
+run/main_scene="res://menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]

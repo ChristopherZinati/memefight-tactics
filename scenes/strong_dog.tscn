@@ -70,10 +70,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87f7o"]
-size = Vector2(28, 28)
+size = Vector2(50, 51)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_br7uk"]
-radius = 18.0434
+radius = 19.7959
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85fqn"]
 bg_color = Color(0.00566115, 0.00566115, 0.00566114, 1)
@@ -88,34 +88,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s4oy"]
 bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
 
-[sub_resource type="Animation" id="Animation_4nj65"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_xgbjo"]
+[sub_resource type="Animation" id="Animation_7puhd"]
 resource_name = "attack"
 length = 0.5
 loop_mode = 1
@@ -150,7 +123,7 @@ tracks/2/path = NodePath("StateMachine/Attacking")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.433333),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -158,16 +131,44 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvw34"]
+[sub_resource type="Animation" id="Animation_84g17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5dy7"]
 _data = {
-"RESET": SubResource("Animation_4nj65"),
-"attack": SubResource("Animation_xgbjo")
+"RESET": SubResource("Animation_84g17"),
+"attack": SubResource("Animation_7puhd")
 }
 
 [node name="strongDog" type="CharacterBody2D" node_paths=PackedStringArray("anim") groups=["units"]]
 light_mask = 3
 collision_mask = 3
 script = ExtResource("1_5lp78")
+unit_id = 2
 stats = ExtResource("2_poeu7")
 anim = NodePath("AnimationPlayer")
 
@@ -175,16 +176,15 @@ anim = NodePath("AnimationPlayer")
 position = Vector2(14, 11)
 sprite_frames = SubResource("SpriteFrames_d6qdl")
 animation = &"attack"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(16, 16)
+position = Vector2(14, 13.5)
 shape = SubResource("RectangleShape2D_87f7o")
 
 [node name="AttackRange" type="Area2D" parent="."]
 position = Vector2(-11, -14)
 scale = Vector2(1.76, 1.6)
+collision_mask = 2
 
 [node name="RangeShape" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(16, 17)
@@ -235,5 +235,5 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_yvw34")
+"": SubResource("AnimationLibrary_w5dy7")
 }

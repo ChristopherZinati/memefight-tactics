@@ -23,6 +23,7 @@ bg_color = Color(0.889065, 0.475534, 0.0660625, 1)
 
 [node name="drag_weakDog" type="Area2D" groups=["units"]]
 script = ExtResource("1_d2thx")
+unit_id = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(14, 11)

@@ -6,6 +6,7 @@ extends State
 var target = null
 
 func enter():
+
 	target = fsm.target
 	owner_entity.anim.speed_scale = owner_entity.stats.attack_speed
 	face_target()

@@ -116,14 +116,7 @@ func _on_shop_item_purchased(item):
 	if item is Buff:
 		for unit in player.units:
 			unit.apply_buff(item)
-	elif item is DraggableUnit:
-		var duplicate_units := 0
-		for unit in player.units:
-			if unit.unit_id == item.unit_id:
-				duplicate_units += 1
 
-		if duplicate_units == 3:
-			events.upgrade_unit.emit(item.unit_id)
 
 
 func _on_xp_purchased(amount: int):

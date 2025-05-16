@@ -76,7 +76,16 @@ var units = {
 		"texture":preload("res://art/WeakDog-0.png"),
 		"description":"a weak type from the dog faction. mostly bark, hardly bites.",
 		"price":100,
-		"type":"unit"
+		"type":"unit",
+		"unit_id":1
+	},
+	"strong dog": {
+		"scene": preload("res://scenes/drag_strong_dog.tscn"),
+		"texture":preload("res://art/StrongDog-0.png"),
+		"description":"Looks mean, but is a Good Boy",
+		"price": 250,
+		"type":"unit",
+		"unit_id": 2
 	}
 }
 
